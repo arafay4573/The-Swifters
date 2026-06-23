@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Terminal, ShieldAlert, Cpu } from "lucide-react";
+import swiftersLogo from "../assets/images/swifters-logo.png";
 
 interface HeroProps {
   onExploreClick: () => void;
@@ -73,159 +74,14 @@ export default function Hero({ onExploreClick }: HeroProps) {
           />
 
           {/* SVG Complex Emblem Lockup */}
-          <svg
-            viewBox="0 0 200 200"
-            className="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,102,0.3)]"
-          >
-            {/* Hexagonal cyber overlay rotating slowly */}
-            <motion.polygon
-              points="100,10 180,50 180,150 100,190 20,150 20,50"
-              fill="none"
-              stroke="rgba(0, 255, 102, 0.15)"
-              strokeWidth="1.5"
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-            />
-            {/* Interactive/Aggressive Outer Target brackets */}
-            <motion.path
-              d="M 45,30 L 25,30 L 25,170 L 45,170 M 155,30 L 175,30 L 175,170 L 155,170"
-              fill="none"
-              stroke="#00ff66"
-              strokeWidth="2.5"
-              className="opacity-40"
-              animate={{ scale: [0.98, 1.02, 0.98] }}
-              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-            />
-            {/* Calibration crosshairs */}
-            <line x1="100" y1="20" x2="100" y2="40" stroke="#00ff66" strokeWidth="1.5" className="opacity-60" />
-            <line x1="100" y1="160" x2="100" y2="180" stroke="#00ff66" strokeWidth="1.5" className="opacity-60" />
-            <line x1="20" y1="100" x2="40" y2="100" stroke="#00ff66" strokeWidth="1.5" className="opacity-60" />
-            <line x1="160" y1="100" x2="180" y2="100" stroke="#00ff66" strokeWidth="1.5" className="opacity-60" />
-
-            {/* Core Swifter Anchor & S-Curve Logo matching reference image */}
-            {/* 1. Shackle Loop at Top */}
-            <motion.circle
-              cx="100"
-              cy="36"
-              r="11"
-              fill="none"
-              stroke="#00ff66"
-              strokeWidth="3.5"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-            />
-            <motion.circle
-              cx="100"
-              cy="36"
-              r="3.5"
-              fill="#00ff66"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-            />
-            <motion.rect
-              x="92"
-              y="48"
-              width="16"
-              height="4"
-              rx="1"
-              fill="#00ff66"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-            />
-
-            {/* 2. Horizontal Stock (Crossbar) */}
-            <motion.rect
-              x="70"
-              y="53"
-              width="60"
-              height="7"
-              rx="1"
-              fill="#00ff66"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-            />
-
-            {/* 3. Main Center Shank (Vertical Column) */}
-            <motion.rect
-              x="96.5"
-              y="60"
-              width="7"
-              height="80"
-              rx="1.5"
-              fill="#00ff66"
-              opacity="0.85"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-            />
-
-            {/* 4. Elegant S-Curve wrapping the Shank as shown in reference */}
-            <motion.path
-              d="M 115 75 C 115 63, 85 63, 85 87 C 85 110, 115 103, 115 126 C 115 140, 85 140, 85 128"
-              fill="none"
-              stroke="#39ff14"
-              strokeWidth="11"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-              className="drop-shadow-[0_0_12px_#39ff14]"
-            />
-
-            {/* 5. Custom Droplet Accents matching the reference */}
-            {/* Upper Right Droplet */}
-            <motion.path
-              d="M 116 68 C 120 68 123 72 123 76 C 123 80 120 83 116 83 C 112 83 111 80 112 77 C 113 74 116 68 116 68 Z"
-              fill="#39ff14"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-              className="drop-shadow-[0_0_8px_#39ff14]"
-            />
-            {/* Lower Left Droplet */}
-            <motion.path
-              d="M 84 124 C 80 124 77 120 77 116 C 77 112 80 109 84 109 C 88 109 89 112 88 115 C 87 118 84 124 84 124 Z"
-              fill="#39ff14"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-              className="drop-shadow-[0_0_8px_#39ff14]"
-            />
-
-            {/* 6. Crown & Flukes (Anchor Base Crescent) matching the reference */}
-            <motion.path
-              d="M 50 105 C 50 105, 53 118, 62 122 C 72 126, 75 120, 75 120 C 75 120, 80 142, 100 142 C 120 142, 125 120, 125 120 C 125 120, 128 126, 138 122 C 147 118, 150 105, 150 105 C 150 105, 142 138, 100 152 C 58 138, 50 105, 50 105 Z"
-              fill="rgba(0, 255, 102, 0.15)"
-              stroke="#00ff66"
-              strokeWidth="3.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              variants={logoPathVariants}
-              initial="hidden"
-              animate="visible"
-              className="drop-shadow-[0_0_8px_#00ff66]"
-            />
-
-            {/* Central energy core (Diamond structure) */}
-            <motion.polygon
-              points="100,97 108,105 100,113 92,105"
-              fill="currentColor"
-              className="text-matrix-neon animate-pulse drop-shadow-[0_0_10px_#39ff14]"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.8, type: "spring" }}
-            />
-
-            {/* Decorative Pulse Nodes */}
-            <circle cx="100" cy="152" r="3" fill="#39ff14" />
-            <circle cx="50" cy="105" r="3" fill="#ffffff" className="animate-ping" />
-            <circle cx="150" cy="105" r="3" fill="#ffffff" className="animate-ping" />
-          </svg>
+          <img
+            src={swiftersLogo}
+            alt="Swifters Logo"
+            className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(0,255,102,0.3)]"
+            style={{
+              filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
+            }}
+          />
         </motion.div>
 
         {/* Glitch brand name with animated overlay */}

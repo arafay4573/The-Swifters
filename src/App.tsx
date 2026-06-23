@@ -88,7 +88,7 @@ export default function App() {
             <Navbar onNavClick={handleNavClick} activeSection={activeSection} />
 
             {/* 5. Fluid absolute layered section chassis */}
-            <main className="flex-1 relative z-10">
+            <main className="flex-1 relative z-10 pt-20">
 
               {/* SECTION 1: HERO CONTAINER */}
               <div id="hero-panel" className="relative z-10 shadow-[0_15px_30px_rgba(0,0,0,0.95)]">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Terminal, Shield, Zap } from "lucide-react";
+import swiftersLogo from "../assets/images/swifters-logo.png";
 
 interface NavbarProps {
   onNavClick: (sectionId: string) => void;
@@ -55,7 +56,7 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
   return (
     <header
       id="matrix-header-main"
-      className="sticky top-0 w-full z-40 bg-black/60 backdrop-blur-md border-b border-matrix/20 overflow-hidden"
+      className="fixed top-0 w-full z-40 bg-black/60 backdrop-blur-md border-b border-matrix/20 overflow-hidden"
     >
       {/* 1. Translucent Parallax Background Text (Glides behind elements) */}
       <div className="absolute inset-0 z-0 pointer-events-none flex items-center select-none overflow-hidden h-full">
@@ -81,54 +82,14 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
               className="group flex items-center gap-3 bg-transparent text-left border-none focus:outline-none"
             >
               <div className="relative w-10 h-10 border border-matrix/40 bg-black flex items-center justify-center group-hover:border-matrix-neon group-hover:box-glow-matrix transition-all duration-300">
-                <svg
-                  viewBox="0 0 40 40"
-                  className="w-7 h-7 text-matrix group-hover:text-matrix-neon group-hover:drop-shadow-[0_0_6px_#39ff14] transition-all duration-300"
-                >
-                  {/* 1. Shackle Loop at Top */}
-                  <circle cx="20" cy="7" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-                  <circle cx="20" cy="7" r="1.0" fill="currentColor" />
-                  <rect x="18" y="10" width="4" height="0.8" rx="0.2" fill="currentColor" />
-
-                  {/* 2. Horizontal Stock (Crossbar) */}
-                  <rect x="13" y="11" width="14" height="1.5" rx="0.3" fill="currentColor" />
-
-                  {/* 3. Main Center Shank (Vertical Column) */}
-                  <rect x="19.2" y="12.5" width="1.6" height="17" rx="0.3" fill="currentColor" opacity="0.85" />
-
-                  {/* 4. Elegant S-Curve wrapping the Shank as shown in reference */}
-                  <path
-                    d="M 23,15 C 23,12.5 17,12.5 17,17 C 17,21 23,20 23,24 C 23,27.5 17,27.5 17,25"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-
-                  {/* 5. Custom Droplet Accents matching the reference */}
-                  {/* Upper Right Droplet */}
-                  <path
-                    d="M 23.2,13.5 C 24.2,13.5 24.5,14.5 24.5,15.5 C 24.5,16.5 23.7,17 23.2,17 C 22.7,17 22.5,16.5 22.5,15.5 C 22.5,14.5 23.2,13.5 23.2,13.5 Z"
-                    fill="currentColor"
-                  />
-                  {/* Lower Left Droplet */}
-                  <path
-                    d="M 16.8,24.5 C 17.3,24.5 17.5,25 17.5,26 C 17.5,27 16.7,27.5 16.2,27.5 C 15.7,27.5 15.5,27 15.5,26 C 15.5,25 16.2,24.5 16.8,24.5 Z"
-                    fill="currentColor"
-                  />
-
-                  {/* 6. Crown & Flukes (Anchor Base Crescent) matching the reference */}
-                  <path
-                    d="M 10,21 C 10,21, 11,24.5, 12.5,25.5 C 14.5,26.5, 15,25, 15,25 C 15,25, 16,29.5, 20,29.5 C 24,29.5, 25,25, 25,25 C 25,25, 25.5,26.5, 27.5,25.5 C 29,24.5, 30,21, 30,21 C 30,21, 28.5,27.5, 20,30.5 C 11.5,27.5, 10,21, 10,21 Z"
-                    fill="currentColor"
-                    fillOpacity="0.15"
-                    stroke="currentColor"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <img
+                  src={swiftersLogo}
+                  alt="Swifters Logo"
+                  className="w-8 h-8 object-contain transition-all duration-300"
+                  style={{
+                    filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%) drop-shadow(0 0 4px #00ff66)"
+                  }}
+                />
                 <span className="absolute -top-1 -left-1 w-1.5 h-1.5 border-t border-l border-matrix group-hover:border-matrix-neon" />
                 <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 border-b border-r border-matrix group-hover:border-matrix-neon" />
               </div>
