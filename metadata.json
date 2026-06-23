@@ -1,0 +1,6 @@
+{
+  "name": "Swifters Portfolio",
+  "description": "A high-end, immersive company portfolio website for Swifters with a Cyberpunk and Matrix-inspired aesthetic, custom cursor controls, parallax effects, and smooth motion animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

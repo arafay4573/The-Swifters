@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-matrix: #00ff66;
+  --color-matrix-neon: #39ff14;
+  --color-matrix-dark: #002200;
+  --color-matrix-bg: #000000;
+}
+
+@layer base {
+  html, body {
+    background-color: #000000;
+    color: #00ff66;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom high-scrolling performance scrollbars for cyberpunk/matrix look */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000000;
+    border-left: 1px solid rgba(0, 255, 102, 0.1);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #00ff66;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #00ff66;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #39ff14;
+    box-shadow: 0 0 10px #39ff14;
+  }
+
+  /* Hide default cursor on desktop when interactive cursor is active */
+  @media (pointer: fine) {
+    body, a, button, [role="button"], input, select, textarea {
+      cursor: none !important;
+    }
+  }
+}
+
+/* Custom terminal scanline overlay */
+.terminal-overlay {
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 4px, 6px 100%;
+}
+
+.terminal-overlay::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 0%, rgba(0, 255, 102, 0.08) 10%, rgba(18, 16, 16, 0) 11%);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Custom matrix glow utility */
+.glow-matrix {
+  text-shadow: 0 0 4px rgba(0, 255, 102, 0.6), 0 0 12px rgba(0, 255, 102, 0.3);
+}
+
+.glow-matrix-heavy {
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.8), 0 0 20px rgba(57, 255, 20, 0.5), 0 0 40px rgba(57, 255, 20, 0.3);
+}
+
+.box-glow-matrix {
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.3), inset 0 0 10px rgba(0, 255, 102, 0.2);
+  border: 1px solid rgba(0, 255, 102, 0.4);
+}
+
+.box-glow-heavy {
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.6), inset 0 0 15px rgba(57, 255, 20, 0.3);
+  border: 1.5px solid rgba(57, 255, 20, 0.8);
+}
+
+/* Custom glitch animation classes */
+@keyframes glitch-anim {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+  }
+  10% {
+    clip-path: inset(92% 0 1% 0);
+  }
+  20% {
+    clip-path: inset(25% 0 58% 0);
+  }
+  30% {
+    clip-path: inset(75% 0 15% 0);
+  }
+  40% {
+    clip-path: inset(5% 0 85% 0);
+  }
+  50% {
+    clip-path: inset(57% 0 35% 0);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+  }
+  70% {
+    clip-path: inset(15% 0 70% 0);
+  }
+  80% {
+    clip-path: inset(62% 0 20% 0);
+  }
+  90% {
+    clip-path: inset(33% 0 56% 0);
+  }
+  100% {
+    clip-path: inset(40% 0 61% 0);
+  }
+}
+
+.glitch-effect {
+  position: relative;
+}
+
+.glitch-effect::before,
+.glitch-effect::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.glitch-effect::before {
+  left: 2px;
+  text-shadow: -1px 0 #00ff66;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-effect::after {
+  left: -2px;
+  text-shadow: -1px 0 #39ff14, 0 1px #39ff14;
+  clip: rect(85px, 450px, 140px, 0);
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+}
