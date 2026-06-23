@@ -58,30 +58,65 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-48 h-48 sm:w-64 sm:h-64 mb-4 flex items-center justify-center p-4 bg-matrix-dark/15 border border-matrix/30 [clip-path:polygon(15%_0%,85%_0%,100%_15%,100%_85%,85%_100%,15%_100%,0%_85%,0%_15%)] shadow-[0_0_50px_rgba(0,255,102,0.1)]"
+          className="relative w-[384px] h-[384px] sm:w-[512px] sm:h-[512px] mt-16 sm:mt-24 mb-16 sm:mb-24 flex items-center justify-center p-4"
         >
-          {/* Cyber scanner sweep lines animating vertically */}
-          <motion.div
-            className="absolute left-0 right-0 h-[1.5px] bg-matrix shadow-[0_0_8px_#00ff66] z-10 opacity-60"
-            animate={{
-              top: ["10%", "90%", "10%"],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
+          {/* Outer Hexagon: rotating left */}
 
-          {/* SVG Complex Emblem Lockup */}
-          <img
-            src={swiftersLogo}
-            alt="Swifters Logo"
-            className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(0,255,102,0.3)]"
-            style={{
-              filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
-            }}
-          />
+
+
+
+          {/* Outer Hexagon & Scanline: rotating left */}
+          <motion.div
+            className="absolute -inset-6 z-0"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+            >
+              {/* Outer Hexagon Border using SVG */}
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full drop-shadow-[0_0_15px_rgba(0,255,102,0.3)]">
+                <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#39ff14" strokeWidth="1" />
+              </svg>
+
+              {/* Scanline confined within the rotating outer hexagon */}
+              <motion.div
+                className="absolute left-0 right-0 h-[3px] bg-matrix shadow-[0_0_15px_#00ff66] opacity-80"
+                animate={{
+                  top: ["0%", "100%", "0%"],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Inner Hexagon: rotating right */}
+          <motion.div
+            className="absolute inset-4 z-0"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,102,0.5)]">
+              <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#00ff66" strokeWidth="1" />
+            </svg>
+          </motion.div>
+
+          {/* Static SVG Complex Emblem Lockup */}
+          <div className="relative z-20 w-3/4 h-3/4 flex items-center justify-center">
+            <img
+              src={swiftersLogo}
+              alt="Swifters Logo"
+              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)]"
+              style={{
+                filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
+              }}
+            />
+          </div>
         </motion.div>
 
         {/* Glitch brand name with animated overlay */}
