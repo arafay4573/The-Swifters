@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform, useVelocity, useAnimationFrame, useSpring, useMotionValue } from "motion/react";
+import { wrap } from "motion";
 import { Terminal, Shield, Zap } from "lucide-react";
 import swiftersLogo from "../assets/images/swifters-logo.png";
 
@@ -13,10 +14,36 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
   const [glitchText, setGlitchText] = useState("SWIFTERS");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Parallax translation for the massive background text
-  // As the user scrolls from 0 to 1500px, shift the text horizontally from 50% to -120%
-  const xTranslation = useTransform(scrollY, [0, 2000], ["20%", "-60%"]);
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 400
+  });
+
+  const baseX = useMotionValue(0);
   const textOpacity = useTransform(scrollY, [0, 400], [0.15, 0.45]);
+
+  // Adjust direction based on scroll velocity
+  const directionFactor = useRef<number>(1);
+
+  useAnimationFrame((t, delta) => {
+    let moveBy = directionFactor.current * -2 * (delta / 1000);
+
+    if (smoothVelocity.get() > 0) {
+      directionFactor.current = 1;
+    } else if (smoothVelocity.get() < 0) {
+      directionFactor.current = -1;
+    }
+
+    // Add velocity factor to speed up on scroll
+    moveBy += directionFactor.current * moveBy * Math.abs(smoothVelocity.get()) * 0.05;
+
+    baseX.set(baseX.get() + moveBy);
+  });
+
+  // Using wrap to keep the scrolling infinite. The value wraps between -50% and 0%.
+  // We need the string to be repeated enough times so it looks seamless.
+  const xTranslation = useTransform(baseX, (v) => `${wrap(-50, 0, v)}%`);
 
   // Fun random cyber glyph glitch effect on hover of the logo
   const triggerLogoGlitch = () => {
@@ -62,9 +89,10 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
       <div className="absolute inset-0 z-0 pointer-events-none flex items-center select-none overflow-hidden h-full">
         <motion.div
           style={{ x: xTranslation, opacity: textOpacity }}
-          className="whitespace-nowrap text-matrix font-sans text-5xl sm:text-7xl font-extrabold tracking-widest uppercase opacity-20 blur-[1px]"
+          className="whitespace-nowrap text-matrix font-sans text-5xl sm:text-7xl font-extrabold tracking-widest uppercase opacity-20 blur-[1px] flex w-max"
         >
-          Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate
+          <span>Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • </span>
+          <span>Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • </span>
         </motion.div>
       </div>
 
@@ -85,7 +113,7 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
                 <img
                   src={swiftersLogo}
                   alt="Swifters Logo"
-                  className="w-8 h-8 object-contain transition-all duration-300"
+                  className="w-full h-full object-contain transition-all duration-300"
                   style={{
                     filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%) drop-shadow(0 0 4px #00ff66)"
                   }}
