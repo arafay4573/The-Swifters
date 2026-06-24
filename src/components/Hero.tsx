@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center"
+          className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] mt-12 sm:mt-16 mb-2 sm:mb-4 flex items-center justify-center"
         >
           {/* Outer Hexagon: rotating left */}
 
@@ -149,11 +149,11 @@ export default function Hero({ onExploreClick }: HeroProps) {
           </motion.div>
 
           {/* Static SVG Complex Emblem Lockup */}
-          <div className="absolute z-20 w-[120%] h-[120%] flex items-center justify-center pointer-events-none">
+          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
             <img
               src={swiftersLogo}
               alt="Swifters Logo"
-              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)] scale-[2.06]"
+              className="w-[65%] h-[65%] object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)]"
               style={{
                 filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
               }}
