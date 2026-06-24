@@ -19,7 +19,7 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
   // We use modulo to make it infinite once it scrolls completely past its length.
   // Assuming the text width is approximately 3000px (half of the duplicated string).
   // Starts at 100vw (offscreen right) at scroll 0, moves left as scroll increases.
-  const xTranslation = useTransform(scrollY, (v) => `calc(100vw - ${(v * 1.5) % 3000}px)`);
+  const xTranslation = useTransform(scrollY, (v) => `calc(100vw - ${v * 1.5}px)`);
 
   // Fun random cyber glyph glitch effect on hover of the logo
   const triggerLogoGlitch = () => {
@@ -67,8 +67,7 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
           style={{ x: xTranslation, opacity: textOpacity }}
           className="whitespace-nowrap text-matrix font-sans text-5xl sm:text-7xl font-extrabold tracking-widest uppercase opacity-20 blur-[1px] flex w-max"
         >
-          <span>Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • </span>
-          <span>Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • </span>
+          <span>Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • Quick to create, Bold to innovate • </span>
         </motion.div>
       </div>
 
