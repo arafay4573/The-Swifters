@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-[384px] h-[384px] sm:w-[512px] sm:h-[512px] mt-16 sm:mt-24 mb-16 sm:mb-24 flex items-center justify-center p-4"
+          className="relative w-[256px] h-[256px] sm:w-[384px] sm:h-[384px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center p-4"
         >
           {/* Outer Hexagon: rotating left */}
 
@@ -101,13 +101,31 @@ export default function Hero({ onExploreClick }: HeroProps) {
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,102,0.5)]">
-              <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#00ff66" strokeWidth="1" />
-            </svg>
+            <div
+              className="absolute inset-0"
+              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+            >
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,102,0.5)]">
+                <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#00ff66" strokeWidth="1" />
+              </svg>
+
+              {/* Scanline confined within the rotating inner hexagon */}
+              <motion.div
+                className="absolute left-0 right-0 h-[2px] bg-matrix shadow-[0_0_10px_#00ff66] opacity-60"
+                animate={{
+                  top: ["100%", "0%", "100%"],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </div>
           </motion.div>
 
           {/* Static SVG Complex Emblem Lockup */}
-          <div className="relative z-20 w-3/4 h-3/4 flex items-center justify-center">
+          <div className="relative z-20 w-[85%] h-[85%] flex items-center justify-center">
             <img
               src={swiftersLogo}
               alt="Swifters Logo"

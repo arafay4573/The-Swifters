@@ -27,18 +27,17 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
   const directionFactor = useRef<number>(1);
 
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * -2 * (delta / 1000);
+    let velocity = smoothVelocity.get();
 
-    if (smoothVelocity.get() > 0) {
-      directionFactor.current = 1;
-    } else if (smoothVelocity.get() < 0) {
-      directionFactor.current = -1;
+    // Only move if we are scrolling (velocity != 0)
+    // velocity is positive when scrolling down, negative when scrolling up
+    // We want right-to-left when scrolling down (negative X movement).
+    // So if velocity > 0, moveBy should be negative.
+    let moveBy = -velocity * (delta / 1000) * 0.03;
+
+    if (moveBy !== 0) {
+      baseX.set(baseX.get() + moveBy);
     }
-
-    // Add velocity factor to speed up on scroll
-    moveBy += directionFactor.current * moveBy * Math.abs(smoothVelocity.get()) * 0.05;
-
-    baseX.set(baseX.get() + moveBy);
   });
 
   // Using wrap to keep the scrolling infinite. The value wraps between -50% and 0%.
@@ -113,7 +112,7 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
                 <img
                   src={swiftersLogo}
                   alt="Swifters Logo"
-                  className="w-full h-full object-contain transition-all duration-300"
+                  className="w-full h-full object-contain scale-[1.7] transition-all duration-300"
                   style={{
                     filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%) drop-shadow(0 0 4px #00ff66)"
                   }}
