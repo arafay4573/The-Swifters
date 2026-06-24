@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform, useVelocity, useAnimationFrame, useSpring, useMotionValue } from "motion/react";
-import { wrap } from "motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Terminal, Shield, Zap } from "lucide-react";
 import swiftersLogo from "../assets/images/swifters-logo.png";
 
@@ -14,35 +13,13 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
   const [glitchText, setGlitchText] = useState("SWIFTERS");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400
-  });
-
-  const baseX = useMotionValue(0);
   const textOpacity = useTransform(scrollY, [0, 400], [0.15, 0.45]);
 
-  // Adjust direction based on scroll velocity
-  const directionFactor = useRef<number>(1);
-
-  useAnimationFrame((t, delta) => {
-    let velocity = smoothVelocity.get();
-
-    // Only move if we are scrolling (velocity != 0)
-    // velocity is positive when scrolling down, negative when scrolling up
-    // We want right-to-left when scrolling down (negative X movement).
-    // So if velocity > 0, moveBy should be negative.
-    let moveBy = -velocity * (delta / 1000) * 0.03;
-
-    if (moveBy !== 0) {
-      baseX.set(baseX.get() + moveBy);
-    }
-  });
-
-  // Using wrap to keep the scrolling infinite. The value wraps between -50% and 0%.
-  // We need the string to be repeated enough times so it looks seamless.
-  const xTranslation = useTransform(baseX, (v) => `${wrap(-50, 0, v)}%`);
+  // Tie the horizontal translation to scrollY directly.
+  // We use modulo to make it infinite once it scrolls completely past its length.
+  // Assuming the text width is approximately 3000px (half of the duplicated string).
+  // Starts at 100vw (offscreen right) at scroll 0, moves left as scroll increases.
+  const xTranslation = useTransform(scrollY, (v) => `calc(100vw - ${(v * 1.5) % 3000}px)`);
 
   // Fun random cyber glyph glitch effect on hover of the logo
   const triggerLogoGlitch = () => {
