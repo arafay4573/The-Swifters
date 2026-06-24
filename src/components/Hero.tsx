@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center p-4"
+          className="relative w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center p-4"
         >
           {/* Outer Hexagon: rotating left */}
 
@@ -67,7 +67,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
 
           {/* Outer Hexagon & Scanline: rotating left */}
           <motion.div
-            className="absolute -inset-6 z-0"
+            className="absolute -inset-3 z-0"
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           >
@@ -109,7 +109,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
 
           {/* Inner Hexagon: rotating right */}
           <motion.div
-            className="absolute inset-4 z-0"
+            className="absolute inset-2 z-0"
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -149,11 +149,11 @@ export default function Hero({ onExploreClick }: HeroProps) {
           </motion.div>
 
           {/* Static SVG Complex Emblem Lockup */}
-          <div className="relative z-20 w-[95%] h-[95%] flex items-center justify-center">
+          <div className="relative z-20 w-[120%] h-[120%] flex items-center justify-center">
             <img
               src={swiftersLogo}
               alt="Swifters Logo"
-              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)]"
+              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)] scale-[1.3]"
               style={{
                 filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
               }}
