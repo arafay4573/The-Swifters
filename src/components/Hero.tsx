@@ -153,7 +153,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
             <img
               src={swiftersLogo}
               alt="Swifters Logo"
-              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)] scale-[1.56]"
+              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)] scale-[1.87]"
               style={{
                 filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
               }}
