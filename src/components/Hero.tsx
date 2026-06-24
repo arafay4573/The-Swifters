@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-[256px] h-[256px] sm:w-[384px] sm:h-[384px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center p-4"
+          className="relative w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center p-4"
         >
           {/* Outer Hexagon: rotating left */}
 
@@ -80,11 +80,23 @@ export default function Hero({ onExploreClick }: HeroProps) {
                 <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#39ff14" strokeWidth="1" />
               </svg>
 
-              {/* Scanline confined within the rotating outer hexagon */}
+                            {/* Vertical Scanline confined within the rotating outer hexagon */}
               <motion.div
                 className="absolute left-0 right-0 h-[3px] bg-matrix shadow-[0_0_15px_#00ff66] opacity-80"
                 animate={{
                   top: ["0%", "100%", "0%"],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+              {/* Horizontal Scanline moving oppositely to form a cage */}
+              <motion.div
+                className="absolute top-0 bottom-0 w-[3px] bg-matrix shadow-[0_0_15px_#00ff66] opacity-80"
+                animate={{
+                  left: ["100%", "0%", "100%"],
                 }}
                 transition={{
                   duration: 4,
@@ -109,7 +121,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
                 <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#00ff66" strokeWidth="1" />
               </svg>
 
-              {/* Scanline confined within the rotating inner hexagon */}
+                            {/* Vertical Scanline confined within the rotating inner hexagon */}
               <motion.div
                 className="absolute left-0 right-0 h-[2px] bg-matrix shadow-[0_0_10px_#00ff66] opacity-60"
                 animate={{
@@ -121,11 +133,23 @@ export default function Hero({ onExploreClick }: HeroProps) {
                   ease: "linear",
                 }}
               />
+              {/* Horizontal Scanline moving oppositely to form a cage */}
+              <motion.div
+                className="absolute top-0 bottom-0 w-[2px] bg-matrix shadow-[0_0_10px_#00ff66] opacity-60"
+                animate={{
+                  left: ["0%", "100%", "0%"],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
             </div>
           </motion.div>
 
           {/* Static SVG Complex Emblem Lockup */}
-          <div className="relative z-20 w-[85%] h-[85%] flex items-center justify-center">
+          <div className="relative z-20 w-[95%] h-[95%] flex items-center justify-center">
             <img
               src={swiftersLogo}
               alt="Swifters Logo"
