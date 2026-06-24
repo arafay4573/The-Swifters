@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] mt-12 sm:mt-16 mb-2 sm:mb-4 flex items-center justify-center"
+          className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] mt-12 sm:mt-16 -mb-4 sm:-mb-6 flex items-center justify-center"
         >
           {/* Outer Hexagon: rotating left */}
 
@@ -153,7 +153,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
             <img
               src={swiftersLogo}
               alt="Swifters Logo"
-              className="w-[65%] h-[65%] object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)]"
+              className="w-[81%] h-[81%] object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)]"
               style={{
                 filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
               }}
