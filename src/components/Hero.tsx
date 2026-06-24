@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center p-4"
+          className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] mt-12 sm:mt-16 mb-12 sm:mb-16 flex items-center justify-center"
         >
           {/* Outer Hexagon: rotating left */}
 
@@ -67,17 +67,17 @@ export default function Hero({ onExploreClick }: HeroProps) {
 
           {/* Outer Hexagon & Scanline: rotating left */}
           <motion.div
-            className="absolute -inset-3 z-0"
+            className="absolute inset-0 z-0"
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           >
             <div
               className="absolute inset-0"
-              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+              style={{ clipPath: "polygon(50% 0%, 93.301% 25%, 93.301% 75%, 50% 100%, 6.699% 75%, 6.699% 25%)" }}
             >
               {/* Outer Hexagon Border using SVG */}
               <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full drop-shadow-[0_0_15px_rgba(0,255,102,0.3)]">
-                <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#39ff14" strokeWidth="1" />
+                <polygon points="50,0 93.301,25 93.301,75 50,100 6.699,75 6.699,25" fill="none" stroke="#39ff14" strokeWidth="1" />
               </svg>
 
                             {/* Vertical Scanline confined within the rotating outer hexagon */}
@@ -109,16 +109,16 @@ export default function Hero({ onExploreClick }: HeroProps) {
 
           {/* Inner Hexagon: rotating right */}
           <motion.div
-            className="absolute inset-2 z-0"
+            className="absolute z-0 flex items-center justify-center" style={{ width: "86.6025%", height: "86.6025%" }}
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
             <div
               className="absolute inset-0"
-              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+              style={{ clipPath: "polygon(50% 0%, 93.301% 25%, 93.301% 75%, 50% 100%, 6.699% 75%, 6.699% 25%)" }}
             >
               <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full drop-shadow-[0_0_15px_rgba(0,255,102,0.5)]">
-                <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#00ff66" strokeWidth="1" />
+                <polygon points="50,0 93.301,25 93.301,75 50,100 6.699,75 6.699,25" fill="none" stroke="#00ff66" strokeWidth="1" />
               </svg>
 
                             {/* Vertical Scanline confined within the rotating inner hexagon */}
@@ -149,11 +149,11 @@ export default function Hero({ onExploreClick }: HeroProps) {
           </motion.div>
 
           {/* Static SVG Complex Emblem Lockup */}
-          <div className="relative z-20 w-[120%] h-[120%] flex items-center justify-center">
+          <div className="absolute z-20 w-[120%] h-[120%] flex items-center justify-center pointer-events-none">
             <img
               src={swiftersLogo}
               alt="Swifters Logo"
-              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)] scale-[1.87]"
+              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(0,255,102,0.5)] scale-[2.06]"
               style={{
                 filter: "brightness(0) saturate(100%) invert(67%) sepia(85%) saturate(3061%) hue-rotate(85deg) brightness(105%) contrast(106%)"
               }}
