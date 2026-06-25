@@ -35,7 +35,7 @@ export default function App() {
     const sections = ["hero", "about", "journey", "tech", "projects", "contact"];
     const observerOptions = {
       root: null,
-      rootMargin: "-25% 0px -60% 0px", // High precision bounds favoring middle/top viewport section presence
+      rootMargin: "-40% 0px -40% 0px", // Use a 40% threshold from top and bottom to ensure the active section is the one taking up the middle of the screen
       threshold: 0,
     };
 
