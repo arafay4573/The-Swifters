@@ -2,6 +2,50 @@ import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Cpu, Code, Wind, Zap, Layers, Share2, Sparkles } from "lucide-react";
 
+const StatusBox = ({ label, value, valueClass }: { label: string, value: string, valueClass: string }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="border border-matrix/10 p-3 bg-black/50 relative cursor-crosshair"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
+    >
+      <span className="block text-matrix/40 uppercase text-[9px]">{label}</span>
+      <span className={`font-bold tracking-wide truncate block ${valueClass}`}>{value}</span>
+
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-3 w-[250px]"
+          >
+            <div className="relative bg-black border border-matrix-neon p-4 shadow-[0_0_15px_rgba(0,255,102,0.2)] backdrop-blur-xl">
+              <span className="text-[10px] font-mono text-matrix/60 uppercase block mb-1">
+                [FULL_DATA_DUMP] // {label}
+              </span>
+              <p className={`text-xs font-mono font-bold whitespace-normal ${valueClass}`}>
+                {value}
+              </p>
+
+              {/* Micro-Indicator Connection Vector */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 flex flex-col items-center">
+                <div className="w-px h-3 bg-matrix-neon/50" />
+                <div className="w-1.5 h-1.5 rounded-full bg-matrix-neon shadow-[0_0_8px_rgba(0,255,102,0.8)]" />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 interface TechDetails {
   name: string;
   icon: ReactNode;
@@ -176,22 +220,10 @@ export default function TechStackSection() {
 
               {/* Realtime parameters */}
               <div className="grid grid-cols-2 gap-4 text-xs font-mono">
-                <div className="border border-matrix/10 p-3 bg-black/50">
-                  <span className="block text-matrix/40 uppercase text-[9px]">COMPILER</span>
-                  <span className="font-bold text-white tracking-wide truncate block">{currentTech.compile}</span>
-                </div>
-                <div className="border border-matrix/10 p-3 bg-black/50">
-                  <span className="block text-matrix/40 uppercase text-[9px]">MEM_LATENCY</span>
-                  <span className="font-bold text-matrix-neon tracking-wide truncate block">{currentTech.latency}</span>
-                </div>
-                <div className="border border-matrix/10 p-3 bg-black/50">
-                  <span className="block text-matrix/40 uppercase text-[9px]">SECURITY_RULE</span>
-                  <span className="font-bold text-white tracking-wide truncate block">{currentTech.security}</span>
-                </div>
-                <div className="border border-matrix/10 p-3 bg-black/50">
-                  <span className="block text-matrix/40 uppercase text-[9px]">SYN_RESONANCE</span>
-                  <span className="font-bold text-matrix-neon tracking-wide truncate block">{currentTech.utilization}</span>
-                </div>
+                <StatusBox label="COMPILER" value={currentTech.compile} valueClass="text-white" />
+                <StatusBox label="MEM_LATENCY" value={currentTech.latency} valueClass="text-matrix-neon" />
+                <StatusBox label="SECURITY_RULE" value={currentTech.security} valueClass="text-white" />
+                <StatusBox label="SYN_RESONANCE" value={currentTech.utilization} valueClass="text-matrix-neon" />
               </div>
 
               {/* Detailed specification layout */}
