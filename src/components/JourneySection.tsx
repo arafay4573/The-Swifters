@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { GitCommit, Radio, Settings, Star, Milestone, Smartphone, Code } from "lucide-react";
 import journeyImg from "../assets/images/journey_railway_1782231080840.jpg";
 
 const MatrixArrowDown = ({ className }: { className?: string }) => (

@@ -1,6 +1,5 @@
 import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Cpu, Code, Wind, Zap, Layers, Share2, Sparkles } from "lucide-react";
 
 const StatusBox = ({ label, value, valueClass }: { label: string, value: string, valueClass: string }) => {
   const [isHovered, setIsHovered] = useState(false);

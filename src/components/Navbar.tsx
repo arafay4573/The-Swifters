@@ -115,18 +115,25 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
                 <button
                   key={item.id}
                   onClick={() => onNavClick(item.id)}
-                  className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-none transition-all duration-300 backdrop-blur-lg border ${
+                  className={`group relative px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-none transition-all duration-300 backdrop-blur-lg border ${
                     isActive
-                      ? "bg-matrix/20 border-matrix text-matrix-neon glow-matrix"
-                      : "bg-black/40 border-matrix/20 text-matrix/70 hover:border-matrix/60 hover:text-matrix hover:bg-matrix/10"
+                      ? "bg-matrix/10 border-matrix/60 text-matrix glow-matrix"
+                      : "bg-black/40 border-matrix/20 text-matrix/70 hover:border-matrix/60 hover:text-matrix hover:bg-matrix/10 hover:glow-matrix"
                   }`}
                 >
                   {/* Subtle terminal-corner aesthetics on hover */}
-                  {isActive && (
+                  {(isActive) && (
                     <>
                       <span className="absolute -top-[1.5px] -left-[1.5px] w-1.5 h-1.5 bg-matrix-neon" />
                       <span className="absolute -bottom-[1.5px] -right-[1.5px] w-1.5 h-1.5 bg-matrix-neon" />
                     </>
+                  )}
+                  {/* Subtle terminal-corner aesthetics on hover (for non-active items) */}
+                  {(!isActive) && (
+                     <>
+                      <span className="absolute -top-[1.5px] -left-[1.5px] w-1.5 h-1.5 bg-matrix-neon opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{'pointerEvents': 'none'}} />
+                      <span className="absolute -bottom-[1.5px] -right-[1.5px] w-1.5 h-1.5 bg-matrix-neon opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{'pointerEvents': 'none'}} />
+                     </>
                   )}
                   {item.label}
                 </button>
