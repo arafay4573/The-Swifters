@@ -28,38 +28,46 @@ export default function App() {
     setActiveSection(sectionId);
   };
 
-  // Setup IntersectionObserver to detect scroll bounds and update Navbar highlighted link
+  // Direct scroll calculations for ultra-smooth active state tracking
   useEffect(() => {
     if (loading) return;
 
-    // Observe the inner section elements
     const sections = ["hero", "about", "journey", "tech", "projects", "contact"];
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px 0px -60% 0px",
-      threshold: 0,
+
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const vh = window.innerHeight;
+          const topThreshold = vh * 0.3;
+          const bottomThreshold = vh * 0.3;
+
+          for (let i = 0; i < sections.length; i++) {
+            const element = document.getElementById(sections[i]);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+
+              // Top edge < 30% from top of viewport AND bottom edge > 30% from top of viewport
+              if (rect.top <= topThreshold && rect.bottom > bottomThreshold) {
+                setActiveSection(sections[i]);
+                break; // Exit loop once active section is found
+              }
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sections.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
+    // Call once initially to set the right section on load if scrolled down
+    handleScroll();
 
     return () => {
-      sections.forEach((id) => {
-        const element = document.getElementById(id);
-        if (element) observer.unobserve(element);
-      });
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [loading]);
 
