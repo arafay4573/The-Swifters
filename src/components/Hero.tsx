@@ -168,12 +168,19 @@ export default function Hero({ onExploreClick }: HeroProps) {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="space-y-2 mb-2"
         >
-          <h1
+          <motion.h1
             className="text-4xl sm:text-7xl font-sans font-black tracking-widest text-[#ffffff] uppercase select-none glitch-effect glow-matrix-heavy"
             data-text="THE SWIFTERS"
+            animate={{ x: [0, 20, -20, 0] }}
+            transition={{
+              duration: 0.3,
+              repeat: Infinity,
+              repeatDelay: 2,
+              ease: "easeInOut"
+            }}
           >
             THE SWIFTERS
-          </h1>
+          </motion.h1>
 
           <div className="flex items-center justify-center gap-2 text-xs font-mono tracking-wider text-matrix-neon bg-matrix-dark/20 px-3 py-1.5 border border-matrix/30 rounded-none w-fit mx-auto mt-2 select-all box-glow-matrix">
             <Cpu className="w-3.5 h-3.5 animate-pulse text-matrix-neon" />
