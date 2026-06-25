@@ -157,13 +157,13 @@
 .glitch-effect::before {
   left: 2px;
   text-shadow: -1px 0 #00ff66;
-  clip: rect(44px, 450px, 56px, 0);
+  clip: rect(44px, 1200px, 56px, 0);
   animation: glitch-anim 5s infinite linear alternate-reverse;
 }
 
 .glitch-effect::after {
   left: -2px;
   text-shadow: -1px 0 #39ff14, 0 1px #39ff14;
-  clip: rect(85px, 450px, 140px, 0);
+  clip: rect(85px, 1200px, 140px, 0);
   animation: glitch-anim 3s infinite linear alternate-reverse;
 }
