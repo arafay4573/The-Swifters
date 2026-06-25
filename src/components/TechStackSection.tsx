@@ -18,64 +18,64 @@ export default function TechStackSection() {
 
   const techStack: TechDetails[] = [
     {
-      name: "GOHIGHLEVEL",
+      name: "GRAPHIC DESIGN",
       icon: <Layers className="w-6 h-6 text-matrix-neon" />,
-      level: "AUTOPILOT_CORE",
-      latency: "0.05ms",
-      security: "ENTERPRISE_SEC",
-      compile: "FUNNELS & WORKFLOWS",
+      level: "BRAND_ASSET_SUITE",
+      latency: "RENDER_REALTIME",
+      security: "VECTOR_PIXEL_PERFECT",
+      compile: "PHOTOSHOP, ILLUSTRATOR, CANVA",
       utilization: "100%",
-      rawDesc: "Our primary tool for pipeline automation, email/SMS workflows, CRM setups, calendars, and high-converting landing pages."
+      rawDesc: "Custom vector illustration layout production, complex digital brand guidelines, high-fidelity UI design assets, and marketing/promotional asset compilation."
     },
     {
-      name: "FIGMA / ADOBE",
+      name: "VIDEO EDITING & PRODUCTION",
       icon: <Code className="w-6 h-6 text-matrix-neon" />,
-      level: "UI_UX_BRANDING",
-      latency: "0.01ms",
-      security: "VECTOR_STRICT",
-      compile: "CREATIVE ENGINE",
-      utilization: "95%",
-      rawDesc: "Used to map out pixel-perfect mobile and desktop interfaces, logo designs, custom brochures, apparel mockups, and corporate flyers."
+      level: "TIMELINE_ENGINE_V1",
+      latency: "ENCODE_REALTIME",
+      security: "MULTI_TRACK_ISO",
+      compile: "PREMIERE PRO, AFTER EFFECTS, FILMORA, CAPCUT",
+      utilization: "100%",
+      rawDesc: "High-end multi-track video sequencing, audio design mastering, custom motion graphics keyframing, motion tracking, and advanced cinematic color grading/rendering."
     },
     {
-      name: "WORDPRESS",
+      name: "UI/UX ARCHITECTURE",
       icon: <Wind className="w-6 h-6 text-matrix-neon" />,
-      level: "CUSTOM_CMS",
-      latency: "2.40ms",
-      security: "ADMIN_HARDENED",
-      compile: "PHP_MYSQL_STABLE",
-      utilization: "88%",
-      rawDesc: "Powering custom, scalable website builds that blend clean editorial layouts with easy client administration and top-notch SEO."
-    },
-    {
-      name: "REACT & FRONTEND",
-      icon: <Zap className="w-6 h-6 text-matrix-neon animate-bounce" />,
-      level: "HIGH_VELOCITY",
+      level: "INTERFACE_LOGIC",
       latency: "0.02ms",
-      security: "SANDBOX_SECURE",
-      compile: "VITE_ESBUILD_ENGINE",
-      utilization: "92%",
-      rawDesc: "Developing blazing-fast responsive websites and web applications with modern modular components, custom Tailwind CSS styling, and clean animations."
+      security: "USER_CENTRIC_ISO",
+      compile: "FIGMA ENVIRONMENT",
+      utilization: "99.8%",
+      rawDesc: "Designing interactive low-to-high fidelity user frames, clickable app layout prototypes, detailed interactive animation maps, and cross-platform mobile/web blueprints."
     },
     {
-      name: "AI POWERED SUITE",
+      name: "APPLICATION DEVELOPMENT",
+      icon: <Zap className="w-6 h-6 text-matrix-neon animate-bounce" />,
+      level: "FULL_STACK_COMPILE",
+      latency: "0.85ms",
+      security: "NATIVE_VIRTUAL_DOM",
+      compile: "REACT.JS, FLUTTER, KOTLIN, WORDPRESS",
+      utilization: "100%",
+      rawDesc: "Custom WordPress theme hooks, high-performance React web applications, and native cross-platform mobile application engineering compiled via Android Studio, Flutter, and Kotlin."
+    },
+    {
+      name: "WORKFLOW AUTOMATION & CRM",
       icon: <Sparkles className="w-6 h-6 text-matrix-neon animate-pulse" />,
-      level: "NEURAL_ASSIST",
-      latency: "15.40ms",
-      security: "ECC_ENCRYPTED",
-      compile: "AI_STENCIL_GEN",
-      utilization: "85%",
-      rawDesc: "Integrating cutting-edge AI models for graphics, content copywriting, layout generation, and workflow optimization to maximize business scaling."
+      level: "LOGIC_ROUTING",
+      latency: "0.01ms",
+      security: "CRON_WEBHOOK_ENCRYPT",
+      compile: "n8n, ZAPIER, GOHIGHLEVEL",
+      utilization: "100%",
+      rawDesc: "Building robust multi-platform data synchronization workflows inside n8n and Zapier, next-generation GoHighLevel pipeline architectures, custom lead capture forms, and automated CRM onboarding sequences."
     },
     {
-      name: "GIT / GITHUB / COLLAB",
+      name: "AI STACK & INTEGRATED SECURITY",
       icon: <Share2 className="w-6 h-6 text-matrix-neon" />,
-      level: "COLLABORATIVE",
-      latency: "0.80ms",
-      security: "SSL_AUTHORIZED",
-      compile: "SLACK_ZOOM_INTEG",
-      utilization: "90%",
-      rawDesc: "Ensuring structured project versioning, clean cloud backups, and seamless coordination using Slack, Zoom, and remote cloud infrastructure."
+      level: "ADVANCED_NEURAL_MONITOR",
+      latency: "AGENT_REALTIME",
+      security: "ANTIGRAVITY_AGENT_ACTIVE",
+      compile: "CLAUDE CURSOR, CLAUDE MODELS (HAIKU, FABLE), JULES, STITCH",
+      utilization: "99.9%",
+      rawDesc: "Implementing advanced language model context configurations using Cursor and specialized Claude reasoning structures (Haiku, Fable). Automating smart workflow routines via Jules and Stitch APIs, integrated alongside continuous deployment pipelines on GitHub, Vercel, and Netlify under strict Antigravity security monitoring protocols."
     },
   ];
 
