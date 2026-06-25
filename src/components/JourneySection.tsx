@@ -75,10 +75,7 @@ export default function JourneySection() {
                 VISUALIZER_PORT: ONLINE
               </span>
               <p className="text-sm font-mono text-matrix/70 leading-relaxed">
-                At The Swifters, we’ve been crafting creative solutions since 2021. We began with a strong focus on design — mastering tools like Figma and Photoshop to create user-centric interfaces, standout logos, and visually compelling posters and brochures.
-              </p>
-              <p className="text-sm font-mono text-matrix/70 leading-relaxed">
-                In 2022, our journey evolved into development, where we started building custom websites that brought our designs to life on the web. As we grew, so did our expertise, leading to our transition into advanced CRM automation via GoHighLevel to automate workflows and scale businesses efficiently.
+                At The Swifters, our journey began in 2021 with a heavy focus on cinematic video editing and graphic design, mastering raw visual asset production and brand aesthetics. In 2022, we scaled our creative vertical by diving deep into user experience frameworks crafting high end UI/UX designs inside Figma. By 2023, we brought those static interfaces to life on the web through custom WordPress engineering. As our capabilities grew, we expanded into complex architecture. In 2024, we launched our GoHighLevel infrastructure deploying high converting sales funnels, lead-capture pipelines and operational CRM ecosystems. In 2025, we shifted our focus to enterprise grade web apps and data logic integrating advanced React web development alongside intricate n8n multi platform backend automations. Today, in 2026, we have evolved into a full-scale digital studio engineering powerful native mobile applications with Flutter and Kotlin while delivering massive, optimized architectural overhauls on GoHighLevel.
               </p>
             </div>
 
