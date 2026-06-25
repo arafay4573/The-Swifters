@@ -117,8 +117,8 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
                   onClick={() => onNavClick(item.id)}
                   className={`group relative px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-none transition-all duration-300 backdrop-blur-lg border ${
                     isActive
-                      ? "bg-matrix/10 border-matrix/60 text-matrix glow-matrix"
-                      : "bg-black/40 border-matrix/20 text-matrix/70 hover:border-matrix/60 hover:text-matrix hover:bg-matrix/10 hover:glow-matrix"
+                      ? "bg-matrix/10 border-matrix/60 text-matrix glow-matrix box-glow-matrix"
+                      : "bg-black/40 border-matrix/20 text-matrix/70 hover:border-matrix/60 hover:text-matrix hover:bg-matrix/10 hover:glow-matrix hover:box-glow-matrix"
                   }`}
                 >
                   {/* Subtle terminal-corner aesthetics on hover */}
