@@ -10,7 +10,7 @@ interface NavbarProps {
 
 export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
   const { scrollY } = useScroll();
-  const [glitchText, setGlitchText] = useState("SWIFTERS");
+  const [glitchText, setGlitchText] = useState("THE SWIFTERS");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const textOpacity = useTransform(scrollY, [0, 400], [0.15, 0.45]);
@@ -25,7 +25,7 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
   const triggerLogoGlitch = () => {
     let iterations = 0;
     const chars = "$@/._-[]&%#10+X=";
-    const original = "SWIFTERS";
+    const original = "THE SWIFTERS";
 
     const interval = setInterval(() => {
       setGlitchText((current) =>
