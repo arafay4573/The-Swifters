@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Shield, Eye, Database, Orbit, Network, Smartphone, Code, Zap } from "lucide-react";
 import aboutDevImg from "../assets/images/about_developers_1782231052891.jpg";
 
 const MatrixArrowDown = ({ className }: { className?: string }) => (
