@@ -32,6 +32,7 @@ export default function App() {
   useEffect(() => {
     if (loading) return;
 
+    // Observe the inner section elements
     const sections = ["hero", "about", "journey", "tech", "projects", "contact"];
     const observerOptions = {
       root: null,
