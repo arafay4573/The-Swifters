@@ -170,9 +170,9 @@ export default function Hero({ onExploreClick }: HeroProps) {
         >
           <h1
             className="text-4xl sm:text-7xl font-sans font-black tracking-widest text-[#ffffff] uppercase select-none glitch-effect glow-matrix-heavy"
-            data-text="SWIFTERS"
+            data-text="THE SWIFTERS"
           >
-            SWIFTERS
+            THE SWIFTERS
           </h1>
 
           <div className="flex items-center justify-center gap-2 text-xs font-mono tracking-wider text-matrix-neon bg-matrix-dark/20 px-3 py-1.5 border border-matrix/30 rounded-none w-fit mx-auto mt-2 select-all box-glow-matrix">
@@ -194,7 +194,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           </p>
 
           <p className="text-sm font-mono text-matrix/60 max-w-lg mx-auto leading-relaxed">
-            A dynamic freelance duo specializing in UI/UX design, modern branding, custom WordPress development, and advanced GoHighLevel CRM automation workflows.
+            A dynamic freelance duo specializing in video editing, graphic design, UI/UX design, custom WordPress development, React web development, native mobile development with Flutter and Kotlin, backed by advanced n8n and GoHighLevel CRM automation workflows.
           </p>
         </motion.div>
 
