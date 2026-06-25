@@ -111,7 +111,7 @@ export default function AboutSection() {
                 Welcome to The Swifters — a <span className="text-matrix-neon underline decoration-matrix-neon/30 text-shadow-sm">dynamic duo of creative professionals</span> turning ideas into powerful digital experiences.
               </p>
               <p className="text-sm text-matrix/70 font-mono leading-relaxed">
-                We specialize in UI/UX design, branding, web development, and GoHighLevel CRM automation to help businesses scale smarter. From real estate to coaching and tech, we've helped clients elevate their digital presence and automate their operations — combining creativity, strategy, and functionality in everything we do.
+                We specialize in graphic design, intuitive UI/UX frameworks, custom WordPress systems and high performance React web applications. From video editing and digital asset creation to building native mobile apps with Flutter and Kotlin, we engineer complete digital ecosystems. By pairing high end frontends with advanced n8n and GoHighLevel CRM automation workflows, we help businesses across real estate, coaching and tech elevate their digital presence, streamline operations and scale smarter combining raw creativity, strategy and heavy duty functionality in everything we do.
               </p>
             </div>
 
