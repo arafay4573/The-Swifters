@@ -1,42 +1,89 @@
-import { motion } from "motion/react";
-import { GitCommit, Radio, Settings, Star, Milestone } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { GitCommit, Radio, Settings, Star, Milestone, Smartphone, Code } from "lucide-react";
 import journeyImg from "../assets/images/journey_railway_1782231080840.jpg";
 
+const MatrixArrowDown = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} style={{ transform: "rotate(90deg)" }}>
+    <polygon points="10,20 60,20 75,35 25,35" fill="currentColor"/>
+    <polygon points="25,40 75,40 95,60 75,80 25,80 45,60" fill="currentColor"/>
+    <polygon points="25,85 75,85 60,100 10,100" fill="currentColor"/>
+  </svg>
+);
+
+const MatrixArrowUp = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} style={{ transform: "rotate(-90deg)" }}>
+    <polygon points="10,20 60,20 75,35 25,35" fill="currentColor"/>
+    <polygon points="25,40 75,40 95,60 75,80 25,80 45,60" fill="currentColor"/>
+    <polygon points="25,85 75,85 60,100 10,100" fill="currentColor"/>
+  </svg>
+);
+
 export default function JourneySection() {
+  const [page, setPage] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const handleNextPage = () => {
+    setDirection(1);
+    setPage(1);
+  };
+
+  const handlePrevPage = () => {
+    setDirection(-1);
+    setPage(0);
+  };
   const milestones = [
     {
       phase: "01 // CONSTRUCT",
       year: "2021",
       icon: <Settings className="w-5 h-5 text-matrix" />,
-      title: "DESIGN CORE & BRAND ARCHITECTURE",
-      desc: "Swifters begins with a strong focus on high-fidelity design. Mastering tools like Figma and Photoshop to create highly user-centric interfaces, standout logos, and visually compelling posters and brochures.",
-      tech: "MODULES: FIGMA_V1, PHOTOSHOP_ENG"
+      title: "CREATIVE PRODUCTION & VISUAL ASSETS",
+      desc: "The journey launches with a heavy focus on cinematic video editing and core graphic design mechanics. Mastered raw visual asset creation, vector layouts, and promotional media production to establish sharp brand aesthetics.",
+      tech: "MODULES: PHOTOSHOP, PREMIERE PRO, ILLUSTRATOR, AFTER EFFECTS, CANVA, FILMORA, CAPCUT"
     },
     {
       phase: "02 // EVOLVE",
       year: "2022",
       icon: <Radio className="w-5 h-5 text-matrix-neon animate-pulse" />,
-      title: "CUSTOM WEB DEVELOPMENT",
-      desc: "Our journey evolves into active development, building custom websites that bring beautiful designs to life on the web. We became highly proficient in WordPress, delivering tailored websites that combine clean aesthetics with solid functionality.",
-      tech: "MODULES: WORDPRESS, HTML_CSS_JS"
+      title: "UI/UX CORE FRAMEWORKS",
+      desc: "Scaling our creative verticals into software design ecosystems. Focused deeply on wireframing, high-fidelity mockups, and crafting highly intuitive, user-centric interface structures.",
+      tech: "MODULES: FIGMA_V1, USER_JOURNEYS, PROTO_UI"
     },
     {
       phase: "03 // ACCELERATE",
       year: "2023",
       icon: <GitCommit className="w-5 h-5 text-matrix-neon" />,
-      title: "GOHIGHLEVEL INTEGRATION",
-      desc: "Expanding into the powerful world of GoHighLevel. Developing ultra-responsive websites, high-converting sales funnels, and robust CRM systems that simplify corporate growth.",
-      tech: "MODULES: GOHIGHLEVEL, FUNNELS_CRM"
+      title: "CUSTOM WEB DEVELOPMENT",
+      desc: "Transitioning static interfaces into interactive web products. Gained absolute proficiency in custom WordPress engineering, developing responsive architectures optimized for clean styling and search visibility.",
+      tech: "MODULES: WORDPRESS, HTML, CSS_JS"
     },
     {
-      phase: "04 // DOMINATE",
-      year: "2024 - 2026",
+      phase: "04 // AUTOMATE",
+      year: "2024",
       icon: <Star className="w-5 h-5 text-matrix" />,
-      title: "AUTOMATION & SYSTEMS SCALING",
-      desc: "Engineering full-funnel setups, custom pipeline tracking, and email/SMS workflows. Helping dozens of businesses automate complex operational processes and scale efficiently via GoHighLevel's all-in-one platform.",
-      tech: "MODULES: AUTOPILOT, SMS_EMAIL_API"
+      title: "GOHIGHLEVEL INFRASTRUCTURE",
+      desc: "Expanding into enterprise automation frameworks. Designed high-converting sales pipelines, tailored landing page flows, and automated lead tracking structures within the GoHighLevel CRM environment.",
+      tech: "MODULES: GOHIGHLEVEL, FUNNELS, CRM_PIPELINES"
+    },
+    {
+      phase: "05 // SCALE",
+      year: "2025",
+      icon: <Code className="w-5 h-5 text-matrix-neon" />,
+      title: "REACT COMPOSITIONS & BACKEND LOGIC",
+      desc: "Engineering complex full-stack components. Integrated modern React web application frameworks alongside complex n8n automation instances to orchestrate conditional data logic loops across independent software platforms.",
+      tech: "MODULES: REACT.JS, n8n_LOGIC, WEB_APPS"
+    },
+    {
+      phase: "06 // COMMAND",
+      year: "2026",
+      icon: <Smartphone className="w-5 h-5 text-matrix" />,
+      title: "MOBILE SOFTWARE ARCHITECTURE",
+      desc: "Evolving into an elite cross-platform engineering studio. Building high-performance, native mobile applications inside Flutter and Kotlin, paired with massive, next-generation optimization overhauls on GoHighLevel networks.",
+      tech: "MODULES: FLUTTER, KOTLIN, ANDROID_STUDIO, GHL_V2"
     },
   ];
+
+  const visibleMilestones = page === 0 ? milestones.slice(0, 4) : milestones.slice(4, 6);
 
   return (
     <section
@@ -110,20 +157,45 @@ export default function JourneySection() {
           </div>
 
           {/* Right Column: Chrono Timeline Structure */}
-          <div className="lg:col-span-7 relative">
+          <div className="lg:col-span-7 relative flex flex-col min-h-[600px]">
+            {/* Up Arrow (Only visible on page 1) */}
+            <AnimatePresence>
+              {page === 1 && (
+                <motion.button
+                  key="prev-button"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={handlePrevPage}
+                  className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mb-6 z-20"
+                >
+                  <MatrixArrowUp className="w-10 h-10 animate-pulse" />
+                </motion.button>
+              )}
+            </AnimatePresence>
+
             {/* Vertical path line */}
             <div className="absolute left-6 top-0 bottom-0 w-[1px] bg-matrix/20" />
 
-            <div className="space-y-12">
-              {milestones.map((item, idx) => (
+            <div className="relative flex-1 w-full grid" style={{ gridTemplateColumns: "1fr", gridTemplateRows: "1fr" }}>
+              <AnimatePresence custom={direction}>
                 <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="relative flex items-start"
+                  key={page}
+                  custom={direction}
+                  variants={{
+                    enter: (dir: number) => ({ opacity: 0, y: dir > 0 ? 50 : -50 }),
+                    center: { opacity: 1, y: 0 },
+                    exit: (dir: number) => ({ opacity: 0, y: dir > 0 ? -50 : 50 }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="space-y-12 h-full"
+                  style={{ gridArea: "1 / 1 / 2 / 2" }}
                 >
+                  {visibleMilestones.map((item, idx) => (
+                    <div key={idx} className="relative flex items-start">
                   {/* Milestones node circle */}
                   <div className="absolute left-6 -translate-x-1/2 w-6 h-6 border-2 border-matrix bg-black rounded-none flex items-center justify-center z-10 box-glow-matrix">
                     <span className="w-2.5 h-2.5 bg-matrix-neon animate-pulse" />
@@ -138,7 +210,7 @@ export default function JourneySection() {
 
                       <div className="flex items-center justify-between border-b border-matrix/10 pb-2">
                         <span className="text-[10px] text-matrix-neon font-mono font-bold tracking-widest bg-matrix-dark/20 px-2 py-0.5 border border-matrix/30 rounded-none">
-                          PHASE_ {item.phase}
+                          {item.phase}
                         </span>
                         <span className="text-xl font-sans font-black tracking-widest text-[#ffffff] glow-matrix">
                           {item.year}
@@ -158,9 +230,27 @@ export default function JourneySection() {
                       </div>
                     </div>
                   </div>
+                </div>
+                  ))}
                 </motion.div>
-              ))}
+              </AnimatePresence>
             </div>
+
+            {/* Down Arrow (Only visible on page 0) */}
+            <AnimatePresence>
+              {page === 0 && (
+                <motion.button
+                  key="next-button"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={handleNextPage}
+                  className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mt-6 z-20"
+                >
+                  <MatrixArrowDown className="w-10 h-10 animate-pulse" />
+                </motion.button>
+              )}
+            </AnimatePresence>
           </div>
 
         </div>
