@@ -1,28 +1,51 @@
-import { motion } from "motion/react";
-import { Shield, Eye, Database, Orbit, Network } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Shield, Eye, Database, Orbit, Network, Smartphone, Code, Zap, ArrowDown, ArrowUp } from "lucide-react";
 import aboutDevImg from "../assets/images/about_developers_1782231052891.jpg";
 
 export default function AboutSection() {
-  const cards = [
+  const [page, setPage] = useState(0);
+
+  const allCards = [
     {
       icon: <Network className="w-5 h-5 text-matrix-neon" />,
-      title: "UI/UX DESIGN & BRANDING",
-      desc: "Designing highly intuitive interfaces, user journeys, and impactful brand identities (logos, custom mockups, and corporate brochures) to set you apart.",
-      stats: "TOOLS: FIGMA & PHOTOSHOP"
+      title: "CREATIVE PRODUCTION & UI/UX",
+      desc: "Crafting raw visual assets, vector layouts, user interfaces, and professional video editing to make your brand instantly unforgettable.",
+      stats: "TOOLS: FIGMA, CANVA, PHOTOSHOP, FILMORA, CAPCUT"
     },
     {
       icon: <Database className="w-5 h-5 text-matrix-neon" />,
-      title: "WEB SYSTEM DEVELOPMENT",
-      desc: "Building blazing-fast WordPress custom websites and modern React structures that bring pristine designs to life with supreme SEO and stability.",
+      title: "CORE WEB DEVELOPMENT",
+      desc: "Engineering blazing-fast, custom WordPress architectures and clean, responsive websites tailored to bring pixel-perfect digital designs to life.",
       stats: "METRICS: +100X DEPLOY SPEED"
+    },
+    {
+      icon: <Smartphone className="w-5 h-5 text-matrix-neon" />,
+      title: "NATIVE MOBILE ENGINEERING",
+      desc: "Building feature-rich, high-performance custom mobile applications using Flutter for elegant cross-platform deployment and Kotlin for native Android power.",
+      stats: "STACK: FLUTTER, KOTLIN, ANDROID STUDIO"
+    },
+    {
+      icon: <Code className="w-5 h-5 text-matrix-neon" />,
+      title: "ADVANCED WEB ARCHITECTURE",
+      desc: "Coding modular, highly dynamic, and optimized web structures using modern React frameworks to handle enterprise-grade frontends.",
+      stats: "CORE: REACT.JS & MODERN ES6+"
     },
     {
       icon: <Shield className="w-5 h-5 text-matrix-neon" />,
       title: "CRM & FUNNEL AUTOPILOT",
-      desc: "Developing high-converting GoHighLevel pipelines, sales funnels, and automated workflows (email, SMS notifications, client onboarding loops).",
+      desc: "Developing high-converting GoHighLevel pipelines, strategic landing pages, custom lead-capture forms, and automated onboarding funnels.",
       stats: "INTEGRATION: GOHIGHLEVEL CORE"
     },
+    {
+      icon: <Zap className="w-5 h-5 text-matrix-neon" />,
+      title: "LOGIC AUTOMATION ENGINES",
+      desc: "Orchestrating complex data synchronization loops and multi-app workflows utilizing conditional logic and multi-platform trigger nodes.",
+      stats: "TOOLS: n8n & ZAPIER"
+    },
   ];
+
+  const visibleCards = page === 0 ? allCards.slice(0, 3) : allCards.slice(3, 6);
 
   return (
     <section
@@ -137,32 +160,67 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-3 flex flex-col gap-6 justify-between"
+            className="lg:col-span-3 flex flex-col gap-6 justify-between relative"
           >
-            {cards.map((card, idx) => (
-              <div
-                key={idx}
-                className="relative bg-matrix-dark/10 border border-matrix/15 p-6 space-y-3 group hover:bg-matrix-dark/25 hover:border-matrix-neon/30 transition-all duration-300 flex-1 flex flex-col justify-center"
+            {page === 1 && (
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setPage(0)}
+                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mb-2"
               >
-                {/* Accent ticks */}
-                <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-matrix/30 group-hover:bg-matrix-neon animate-pulse" />
+                <ArrowUp className="w-6 h-6 animate-pulse" />
+              </motion.button>
+            )}
 
-                <div className="flex items-center gap-3">
-                  <div className="p-2 border border-matrix/25 bg-black/50 rounded-none group-hover:border-matrix-neon transition-colors">
-                    {card.icon}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={page}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col gap-6 h-full"
+              >
+                {visibleCards.map((card, idx) => (
+                  <div
+                    key={idx}
+                    className="relative bg-matrix-dark/10 border border-matrix/15 p-6 space-y-3 group hover:bg-matrix-dark/25 hover:border-matrix-neon/30 transition-all duration-300 flex-1 flex flex-col justify-center"
+                  >
+                    {/* Accent ticks */}
+                    <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-matrix/30 group-hover:bg-matrix-neon animate-pulse" />
+
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 border border-matrix/25 bg-black/50 rounded-none group-hover:border-matrix-neon transition-colors">
+                        {card.icon}
+                      </div>
+                      <h3 className="text-xs font-mono font-black tracking-widest text-matrix/90 group-hover:text-white transition-colors">
+                        {card.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs text-matrix/60 font-mono leading-relaxed">
+                      {card.desc}
+                    </p>
+                    <div className="text-[10px] text-matrix-neon font-bold tracking-widest bg-matrix-dark/10 py-1 px-2 border-l border-matrix-neon mt-auto">
+                      {card.stats}
+                    </div>
                   </div>
-                  <h3 className="text-xs font-mono font-black tracking-widest text-matrix/90 group-hover:text-white transition-colors">
-                    {card.title}
-                  </h3>
-                </div>
-                <p className="text-xs text-matrix/60 font-mono leading-relaxed">
-                  {card.desc}
-                </p>
-                <div className="text-[10px] text-matrix-neon font-bold tracking-widest bg-matrix-dark/10 py-1 px-2 border-l border-matrix-neon mt-auto">
-                  {card.stats}
-                </div>
-              </div>
-            ))}
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            {page === 0 && (
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setPage(1)}
+                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mt-2"
+              >
+                <ArrowDown className="w-6 h-6 animate-pulse" />
+              </motion.button>
+            )}
           </motion.div>
 
         </div>
