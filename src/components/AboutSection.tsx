@@ -189,26 +189,34 @@ export default function AboutSection() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-3 flex flex-col gap-6 justify-between relative"
           >
-            {page === 1 && (
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={handlePrevPage}
-                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mb-2 z-20"
-              >
-                <MatrixArrowUp className="w-10 h-10 animate-pulse" />
-              </motion.button>
-            )}
+            <AnimatePresence>
+              {page === 1 && (
+                <motion.button
+                  key="prev-button"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={handlePrevPage}
+                  className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mb-2 z-20"
+                >
+                  <MatrixArrowUp className="w-10 h-10 animate-pulse" />
+                </motion.button>
+              )}
+            </AnimatePresence>
 
             <div className="relative flex-1 w-full grid" style={{ gridTemplateColumns: "1fr", gridTemplateRows: "1fr" }}>
               <AnimatePresence custom={direction}>
                 <motion.div
                   key={page}
                   custom={direction}
-                  initial={{ opacity: 0, y: direction > 0 ? 50 : -50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: direction > 0 ? -50 : 50 }}
+                  variants={{
+                    enter: (dir: number) => ({ opacity: 0, y: dir > 0 ? 50 : -50 }),
+                    center: { opacity: 1, y: 0 },
+                    exit: (dir: number) => ({ opacity: 0, y: dir > 0 ? -50 : 50 }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="flex flex-col gap-6 h-full"
                   style={{ gridArea: "1 / 1 / 2 / 2" }}
@@ -241,17 +249,20 @@ export default function AboutSection() {
               </AnimatePresence>
             </div>
 
-            {page === 0 && (
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={handleNextPage}
-                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mt-2 z-20"
-              >
-                <MatrixArrowDown className="w-10 h-10 animate-pulse" />
-              </motion.button>
-            )}
+            <AnimatePresence>
+              {page === 0 && (
+                <motion.button
+                  key="next-button"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={handleNextPage}
+                  className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mt-2 z-20"
+                >
+                  <MatrixArrowDown className="w-10 h-10 animate-pulse" />
+                </motion.button>
+              )}
+            </AnimatePresence>
           </motion.div>
 
         </div>
