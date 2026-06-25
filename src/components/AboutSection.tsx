@@ -1,10 +1,37 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Shield, Eye, Database, Orbit, Network, Smartphone, Code, Zap, ArrowDown, ArrowUp } from "lucide-react";
+import { Shield, Eye, Database, Orbit, Network, Smartphone, Code, Zap } from "lucide-react";
 import aboutDevImg from "../assets/images/about_developers_1782231052891.jpg";
+
+const MatrixArrowDown = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} style={{ transform: "rotate(90deg)" }}>
+    <polygon points="10,20 60,20 75,35 25,35" fill="currentColor"/>
+    <polygon points="25,40 75,40 95,60 75,80 25,80 45,60" fill="currentColor"/>
+    <polygon points="25,85 75,85 60,100 10,100" fill="currentColor"/>
+  </svg>
+);
+
+const MatrixArrowUp = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} style={{ transform: "rotate(-90deg)" }}>
+    <polygon points="10,20 60,20 75,35 25,35" fill="currentColor"/>
+    <polygon points="25,40 75,40 95,60 75,80 25,80 45,60" fill="currentColor"/>
+    <polygon points="25,85 75,85 60,100 10,100" fill="currentColor"/>
+  </svg>
+);
 
 export default function AboutSection() {
   const [page, setPage] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const handleNextPage = () => {
+    setDirection(1);
+    setPage(1);
+  };
+
+  const handlePrevPage = () => {
+    setDirection(-1);
+    setPage(0);
+  };
 
   const allCards = [
     {
@@ -167,58 +194,62 @@ export default function AboutSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setPage(0)}
-                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mb-2"
+                onClick={handlePrevPage}
+                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mb-2 z-20"
               >
-                <ArrowUp className="w-6 h-6 animate-pulse" />
+                <MatrixArrowUp className="w-10 h-10 animate-pulse" />
               </motion.button>
             )}
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={page}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-                className="flex flex-col gap-6 h-full"
-              >
-                {visibleCards.map((card, idx) => (
-                  <div
-                    key={idx}
-                    className="relative bg-matrix-dark/10 border border-matrix/15 p-6 space-y-3 group hover:bg-matrix-dark/25 hover:border-matrix-neon/30 transition-all duration-300 flex-1 flex flex-col justify-center"
-                  >
-                    {/* Accent ticks */}
-                    <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-matrix/30 group-hover:bg-matrix-neon animate-pulse" />
+            <div className="relative flex-1 w-full grid" style={{ gridTemplateColumns: "1fr", gridTemplateRows: "1fr" }}>
+              <AnimatePresence custom={direction}>
+                <motion.div
+                  key={page}
+                  custom={direction}
+                  initial={{ opacity: 0, y: direction > 0 ? 50 : -50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: direction > 0 ? -50 : 50 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="flex flex-col gap-6 h-full"
+                  style={{ gridArea: "1 / 1 / 2 / 2" }}
+                >
+                  {visibleCards.map((card, idx) => (
+                    <div
+                      key={idx}
+                      className="relative bg-matrix-dark/10 border border-matrix/15 p-6 space-y-3 group hover:bg-matrix-dark/25 hover:border-matrix-neon/30 transition-all duration-300 flex-1 flex flex-col justify-center"
+                    >
+                      {/* Accent ticks */}
+                      <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-matrix/30 group-hover:bg-matrix-neon animate-pulse" />
 
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 border border-matrix/25 bg-black/50 rounded-none group-hover:border-matrix-neon transition-colors">
-                        {card.icon}
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 border border-matrix/25 bg-black/50 rounded-none group-hover:border-matrix-neon transition-colors">
+                          {card.icon}
+                        </div>
+                        <h3 className="text-xs font-mono font-black tracking-widest text-matrix/90 group-hover:text-white transition-colors">
+                          {card.title}
+                        </h3>
                       </div>
-                      <h3 className="text-xs font-mono font-black tracking-widest text-matrix/90 group-hover:text-white transition-colors">
-                        {card.title}
-                      </h3>
+                      <p className="text-xs text-matrix/60 font-mono leading-relaxed">
+                        {card.desc}
+                      </p>
+                      <div className="text-[10px] text-matrix-neon font-bold tracking-widest bg-matrix-dark/10 py-1 px-2 border-l border-matrix-neon mt-auto">
+                        {card.stats}
+                      </div>
                     </div>
-                    <p className="text-xs text-matrix/60 font-mono leading-relaxed">
-                      {card.desc}
-                    </p>
-                    <div className="text-[10px] text-matrix-neon font-bold tracking-widest bg-matrix-dark/10 py-1 px-2 border-l border-matrix-neon mt-auto">
-                      {card.stats}
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {page === 0 && (
               <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setPage(1)}
-                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mt-2"
+                onClick={handleNextPage}
+                className="mx-auto flex flex-col items-center justify-center text-matrix-neon hover:text-white transition-colors mt-2 z-20"
               >
-                <ArrowDown className="w-6 h-6 animate-pulse" />
+                <MatrixArrowDown className="w-10 h-10 animate-pulse" />
               </motion.button>
             )}
           </motion.div>
