@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { Terminal, Send, CheckCircle2, ShieldCheck, Mail, Globe, MapPin } from "lucide-react";
+import { Terminal, Send, CheckCircle2, ShieldCheck, Mail, Globe, MapPin, Linkedin } from "lucide-react";
 import { motion } from "motion/react";
 import workWithUsImg from "../assets/images/work_with_us_1782231099065.jpg";
 
@@ -240,8 +240,19 @@ export default function ContactSection() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Globe className="w-4 h-4 text-matrix-neon" />
-                  <a href="tel:+923330147310" className="hover:text-matrix-neon underline decoration-matrix-neon/30">
+                  {/* Mobile: Native Dialer */}
+                  <a href="tel:+923330147310" className="md:hidden hover:text-matrix-neon underline decoration-matrix-neon/30">
                     +92 333 0147310
+                  </a>
+                  {/* Desktop: WhatsApp API */}
+                  <a href="https://wa.me/923330147310" target="_blank" rel="noopener noreferrer" className="hidden md:inline hover:text-matrix-neon underline decoration-matrix-neon/30">
+                    +92 333 0147310
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Linkedin className="w-4 h-4 text-matrix-neon" />
+                  <a href="https://www.linkedin.com/in/theswifters" target="_blank" rel="noopener noreferrer" className="hover:text-matrix-neon underline decoration-matrix-neon/30">
+                    /in/theswifters
                   </a>
                 </div>
               </div>
@@ -260,8 +271,7 @@ export default function ContactSection() {
 
             {/* Footer copyright marker info */}
             <div className="text-center lg:text-left text-[10px] text-matrix/30 space-y-2">
-              <span>© {new Date().getFullYear()} SWIFTERS INC. ALL CHASSIS DEPLOYED.</span>
-              <span className="block italic text-[9px]">DESIGNED IN HIGH CONTRAST MATRIX GREEN</span>
+              <span>© 2026 SWIFTERS INC.</span>
             </div>
 
           </div>
