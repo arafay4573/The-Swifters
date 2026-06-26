@@ -137,7 +137,7 @@ export default function ProjectsSection() {
     },
     {
       id: "16",
-      images: ['/projects/funnel snapsot.jpg', '/projects/website snapshot.jpg'],
+      images: ['funnel snapsot.jpg', 'website snapshot.jpg'],
       gridMeta: "AUTO_REF // PRJ-16",
       title: "SCALE AUTOMATED FUNNEL & MARKETING CORE",
       category: "AUTOMATION & CRM",
@@ -194,7 +194,7 @@ export default function ProjectsSection() {
     },
     {
       id: "12",
-      images: ['/projects/logo 1.jpg', '/projects/logo 2.jpg'],
+      images: ['logo 1.jpg', 'logo 2.jpg'],
       gridMeta: "DESIGN_REF // PRJ-12",
       title: "VECTOR IDENTITY LOGO MATRICES",
       category: "GRAPHIC DESIGN & MULTIMEDIA",
