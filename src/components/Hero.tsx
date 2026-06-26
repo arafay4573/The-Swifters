@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }: HeroProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] -mt-4 sm:-mt-2 mb-4 sm:mb-6 flex items-center justify-center"
+          className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] mt-16 md:mt-0 mb-4 sm:mb-6 flex items-center justify-center"
         >
           {/* Outer Hexagon: rotating left */}
 
