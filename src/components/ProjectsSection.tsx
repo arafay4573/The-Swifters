@@ -20,6 +20,7 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
   const projects: ProjectItem[] = [
+    // === MOBILE & WEB DEVELOPMENT ===
     {
       id: "01",
       gridMeta: "CODE_REF // PRJ-01",
@@ -90,6 +91,50 @@ export default function ProjectsSection() {
       outcomes: "Complete cross-platform code compilation yielding optimized performance loops and high-velocity gameplay interaction variables.",
       specs: ["Android Studio", "Kotlin", "Mobile Runtime", "HTML5 Canvas Rendering"],
     },
+
+    // === AUTOMATION & CRM ===
+    {
+      id: "13",
+      gridMeta: "AUTO_REF // PRJ-13",
+      title: "GULIFY REAL ESTATE PIPELINE INFRASTRUCTURE",
+      category: "AUTOMATION & CRM",
+      overview: "Designing, hosting, and optimizing high-converting websites and marketing automation frameworks for a multifamily real estate investment firm.",
+      execution: "Engineered completely responsive landing pages and customized lead-capture pipelines under GoHighLevel. Orchestrated multi-channel onboarding automations, follow-up workflows, and custom calendar booking configurations.",
+      outcomes: "Streamlined manual corporate operations, significantly increasing lead-to-appointment conversion data while running automated operational workflows on autopilot.",
+      specs: ["GoHighLevel CRM", "Funnel Architecture", "Twilio Routing", "Calendar API"],
+    },
+    {
+      id: "14",
+      gridMeta: "AUTO_REF // PRJ-14",
+      title: "AI AGENT CALL CENTRE REPLACEMENT",
+      category: "AUTOMATION & CRM",
+      overview: "Designing and implementing an autonomous communication pipeline engineered to completely replace manual customer service tracking with automated real-time logic routing.",
+      execution: "Built a complex multi-platform n8n data loop triggered via immediate incoming GoHighLevel API webhooks. The automated system extracts client metrics, channels variables through an OpenAI assistant matrix, and instantly writes communication logs back into the user context profile.",
+      outcomes: "Achieved instantaneous data orchestration across systems with zero manual management, scaling backend business capacity effortlessly.",
+      specs: ["n8n Workflow Engine", "Zapier Webhooks", "GoHighLevel API", "OpenAI Model"],
+    },
+    {
+      id: "15",
+      gridMeta: "AUTO_REF // PRJ-15",
+      title: "MULTI-AGENCY CRM SUITE INFRASTRUCTURE",
+      category: "AUTOMATION & CRM",
+      overview: "Designed and deployed a multi-tenant operations blueprint automating client intake, onboarding pathways, and operational data logging for fast-scaling digital agencies.",
+      execution: "Configured robust automated custom triggers linking cross-platform client milestones with automated task management engines. Built complex tracking fields managing account permissions, dynamic pipeline values, and secure conditional user actions natively inside the CRM ecosystem.",
+      outcomes: "Eliminated repetitive manual client-handling workloads across client networks, ensuring lightning-fast client delivery data tracking and zero missed onboarding milestones.",
+      specs: ["GoHighLevel CRM Core Engine", "Webhook Loops", "Twilio", "Mailgun API"],
+    },
+    {
+      id: "16",
+      gridMeta: "AUTO_REF // PRJ-16",
+      title: "SCALE AUTOMATED FUNNEL & MARKETING CORE",
+      category: "AUTOMATION & CRM",
+      overview: "Engineering highly optimized, visual marketing funnels and high-conversion landing page structures mapped to modern target demographic behavior metrics.",
+      execution: "Formatted beautiful custom site components and custom code blocks overlaid onto GoHighLevel web structures. Integrated high-performance forms, surveys, and multi-tier booking paths synced smoothly back to foundational sales databases.",
+      outcomes: "Delivered a striking aesthetic appearance paired with exceptional page loading metrics, yielding a significant increase in client opt-in volumes.",
+      specs: ["GoHighLevel Funnel Engine", "Custom CSS Layouts", "JavaScript Plugins"],
+    },
+
+    // === GRAPHIC DESIGN & MULTIMEDIA ===
     {
       id: "08",
       gridMeta: "DESIGN_REF // PRJ-08",
@@ -139,26 +184,6 @@ export default function ProjectsSection() {
       execution: "Conceptualized and crafted the complete brand vector logo suite for Aimra'a Cab Service (tagline: \"Driven by Women, Empowering Women\") conveying core principles of safety and safety-empowerment, along with a clean modern emblem for the CS Family academic society at SS-CASE-IT.",
       outcomes: "Delivered highly versatile, high-resolution brand assets engineered for flawless rendering across any digital application scale or print dimension.",
       specs: ["Adobe Illustrator Vector Core Engine"],
-    },
-    {
-      id: "13",
-      gridMeta: "AUTO_REF // PRJ-13",
-      title: "GULIFY REAL ESTATE PIPELINE INFRASTRUCTURE",
-      category: "AUTOMATION & CRM",
-      overview: "Designing, hosting, and optimizing high-converting websites and marketing automation frameworks for a multifamily real estate investment firm.",
-      execution: "Engineered completely responsive landing pages and customized lead-capture pipelines under GoHighLevel. Orchestrated multi-channel onboarding automations, follow-up workflows, and custom calendar booking configurations.",
-      outcomes: "Streamlined manual corporate operations, significantly increasing lead-to-appointment conversion data while running automated operational workflows on autopilot.",
-      specs: ["GoHighLevel CRM", "Funnel Architecture", "Twilio Routing", "Calendar API"],
-    },
-    {
-      id: "14",
-      gridMeta: "AUTO_REF // PRJ-14",
-      title: "AI AGENT CALL CENTRE REPLACEMENT",
-      category: "AUTOMATION & CRM",
-      overview: "Designing and implementing an autonomous communication pipeline engineered to completely replace manual customer service tracking with automated real-time logic routing.",
-      execution: "Built a complex multi-platform n8n data loop triggered via immediate incoming GoHighLevel API webhooks. The automated system extracts client metrics, channels variables through an OpenAI assistant matrix, and instantly writes communication logs back into the user context profile.",
-      outcomes: "Achieved instantaneous data orchestration across systems with zero manual management, scaling backend business capacity effortlessly.",
-      specs: ["n8n Workflow Engine", "Zapier Webhooks", "GoHighLevel API", "OpenAI Model"],
     }
   ];
 
@@ -209,7 +234,7 @@ export default function ProjectsSection() {
             <Filter className="w-3.5 h-3.5" />
             <span>FILTER_CORES:</span>
           </div>
-          {["ALL", "MOBILE & WEB DEVELOPMENT", "GRAPHIC DESIGN & MULTIMEDIA", "AUTOMATION & CRM"].map((cat) => (
+          {["ALL", "MOBILE & WEB DEVELOPMENT", "AUTOMATION & CRM", "GRAPHIC DESIGN & MULTIMEDIA"].map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat as any)}
@@ -324,7 +349,7 @@ export default function ProjectsSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 pt-20 sm:pt-24 pb-4"
             style={{ backgroundColor: "rgba(0, 0, 0, 0.85)", backdropFilter: "blur(10px)" }}
             onClick={() => setSelectedProject(null)}
           >
@@ -333,21 +358,21 @@ export default function ProjectsSection() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-w-[95vw] h-full max-h-[95vh] bg-[#000000] border border-matrix-neon shadow-[0_0_30px_rgba(0,255,102,0.2)] flex flex-col md:flex-row overflow-hidden"
+              className="relative w-full max-w-[98vw] md:max-w-[95vw] h-full bg-[#000000] border border-matrix-neon shadow-[0_0_30px_rgba(0,255,102,0.2)] flex flex-col md:flex-row overflow-hidden"
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the box
             >
               {/* Glowing Close Node */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-50 p-2 bg-black border border-matrix hover:border-matrix-neon text-matrix hover:text-matrix-neon transition-colors group cursor-pointer"
+                className="absolute top-3 right-3 z-50 p-1.5 bg-black border border-matrix hover:border-matrix-neon text-matrix hover:text-matrix-neon transition-colors group cursor-pointer"
               >
-                <X className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <X className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span className="sr-only">Close HUD</span>
               </button>
 
               {/* Left Side Content Frame (Visual Gallery) */}
-              <div className="w-full md:w-1/2 h-64 md:h-full border-b md:border-b-0 md:border-r border-matrix/30 relative flex items-center justify-center bg-black/50 overflow-hidden">
-                <span className="text-sm font-mono text-matrix/50 tracking-widest uppercase">
+              <div className="w-full md:w-1/2 h-48 md:h-full border-b md:border-b-0 md:border-r border-matrix/30 relative flex items-center justify-center bg-black/50 overflow-hidden flex-shrink-0">
+                <span className="text-xs font-mono text-matrix/50 tracking-widest uppercase">
                   [SYSTEM_REAL_IMAGE_SLOT]
                 </span>
 
@@ -356,64 +381,64 @@ export default function ProjectsSection() {
               </div>
 
               {/* Right Side Technical Frame (Text Data) */}
-              <div className="w-full md:w-1/2 h-full p-6 sm:p-10 overflow-y-auto scrollbar-thin scrollbar-thumb-matrix/30 scrollbar-track-transparent flex flex-col">
-                <div className="space-y-8 flex-1">
+              <div className="w-full md:w-1/2 h-full p-4 sm:p-6 md:p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-matrix/30 scrollbar-track-transparent flex flex-col">
+                <div className="space-y-6 flex-1">
 
                   {/* Header */}
                   <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-xs font-mono text-matrix-neon bg-matrix-dark/20 px-3 py-1 border border-matrix/30 uppercase tracking-widest">
+                    <div className="flex items-center gap-2 mb-3 flex-wrap">
+                      <span className="text-[10px] font-mono text-matrix-neon bg-matrix-dark/20 px-2 py-0.5 border border-matrix/30 uppercase tracking-widest">
                         {selectedProject.category}
                       </span>
-                      <span className="text-xs font-mono text-matrix/60 uppercase tracking-widest">
+                      <span className="text-[10px] font-mono text-matrix/60 uppercase tracking-widest">
                         {selectedProject.gridMeta}
                       </span>
                     </div>
-                    <h2 className="text-2xl sm:text-4xl font-sans font-black tracking-tight text-white uppercase leading-tight glow-matrix">
+                    <h2 className="text-xl sm:text-2xl font-sans font-black tracking-tight text-white uppercase leading-tight glow-matrix">
                       {selectedProject.title}
                     </h2>
                   </div>
 
                   {/* Project Overview */}
-                  <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-matrix/60 font-bold uppercase tracking-widest border-b border-matrix/20 pb-2">
+                  <div className="space-y-1.5">
+                    <h4 className="text-[10px] font-mono text-matrix/60 font-bold uppercase tracking-widest border-b border-matrix/20 pb-1.5">
                       // Project Overview
                     </h4>
-                    <p className="text-sm sm:text-base text-white/90 font-mono leading-relaxed pt-2">
+                    <p className="text-[11px] sm:text-xs text-white/90 font-mono leading-relaxed pt-1.5">
                       {selectedProject.overview}
                     </p>
                   </div>
 
                   {/* Operational Execution */}
-                  <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-matrix/60 font-bold uppercase tracking-widest border-b border-matrix/20 pb-2">
+                  <div className="space-y-1.5">
+                    <h4 className="text-[10px] font-mono text-matrix/60 font-bold uppercase tracking-widest border-b border-matrix/20 pb-1.5">
                       // Operational Execution
                     </h4>
-                    <p className="text-sm sm:text-base text-white/80 font-mono leading-relaxed pt-2">
+                    <p className="text-[11px] sm:text-xs text-white/80 font-mono leading-relaxed pt-1.5">
                       {selectedProject.execution}
                     </p>
                   </div>
 
                   {/* Strategic Outcomes */}
-                  <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-matrix-neon font-bold uppercase tracking-widest border-b border-matrix/20 pb-2">
+                  <div className="space-y-1.5">
+                    <h4 className="text-[10px] font-mono text-matrix-neon font-bold uppercase tracking-widest border-b border-matrix/20 pb-1.5">
                       // Strategic Outcomes
                     </h4>
-                    <p className="text-sm sm:text-base text-matrix-neon/90 font-mono leading-relaxed pt-2">
+                    <p className="text-[11px] sm:text-xs text-matrix-neon/90 font-mono leading-relaxed pt-1.5">
                       {selectedProject.outcomes}
                     </p>
                   </div>
 
                   {/* Technical Stack */}
-                  <div className="pt-6 mt-auto">
-                    <h4 className="text-[10px] font-mono text-matrix/50 uppercase tracking-widest mb-3">
+                  <div className="pt-4 mt-auto">
+                    <h4 className="text-[9px] font-mono text-matrix/50 uppercase tracking-widest mb-2">
                       SYSTEM_STACK_TRACE:
                     </h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {selectedProject.specs.map((item, idx) => (
                         <span
                           key={idx}
-                          className="text-[11px] font-mono text-[#ffffff] bg-matrix/10 border border-matrix/30 px-3 py-1 uppercase"
+                          className="text-[9px] font-mono text-[#ffffff] bg-matrix/10 border border-matrix/30 px-2 py-0.5 uppercase"
                         >
                           {item}
                         </span>
@@ -424,8 +449,8 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* HUD Anchors */}
-                <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-matrix-neon pointer-events-none" />
-                <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-matrix-neon pointer-events-none" />
+                <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-matrix-neon pointer-events-none" />
+                <span className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-matrix-neon pointer-events-none" />
               </div>
             </motion.div>
           </motion.div>
