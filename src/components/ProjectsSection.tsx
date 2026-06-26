@@ -12,17 +12,20 @@ interface ProjectItem {
   execution: string;
   outcomes: string;
   specs: string[];
+  images?: string[];
 }
 
 export default function ProjectsSection() {
   const [filter, setFilter] = useState<"ALL" | "MOBILE & WEB DEVELOPMENT" | "GRAPHIC DESIGN & MULTIMEDIA" | "AUTOMATION & CRM">("ALL");
   const [hoveredPid, setHoveredPid] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const projects: ProjectItem[] = [
     // === MOBILE & WEB DEVELOPMENT ===
     {
       id: "01",
+      images: ["/projects/smart study ai.jpeg", "/projects/smart study ai 2.jpeg", "/projects/smart study ai 3.jpeg", "/projects/smart study ai 4.jpeg"],
       gridMeta: "CODE_REF // PRJ-01",
       title: "SMARTSTUDY AI WORKSPACE",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -33,6 +36,7 @@ export default function ProjectsSection() {
     },
     {
       id: "02",
+      images: ["/projects/swifters netflix.jpeg", "/projects/swifters netflix2.jpeg", "/projects/swifters netflix 3.jpeg", "/projects/swifters netflix 4.jpeg"],
       gridMeta: "CODE_REF // PRJ-02",
       title: "SWIFTERS+ STREAMING ADAPTER",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -43,6 +47,7 @@ export default function ProjectsSection() {
     },
     {
       id: "03",
+      images: ["/projects/loco chat.jpeg"],
       gridMeta: "CODE_REF // PRJ-03",
       title: "LOCOCHAT OFFLINE MESH NETWORK",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -53,6 +58,7 @@ export default function ProjectsSection() {
     },
     {
       id: "04",
+      images: [],
       gridMeta: "CODE_REF // PRJ-04",
       title: "AVÉRE LUXURY SCENT EXPERIENCE",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -63,6 +69,7 @@ export default function ProjectsSection() {
     },
     {
       id: "05",
+      images: ["/projects/nove.png", "/projects/nove 2.jpg"],
       gridMeta: "CODE_REF // PRJ-05",
       title: "NOVE PUBLIC AFFAIRS INTERFACE",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -73,6 +80,7 @@ export default function ProjectsSection() {
     },
     {
       id: "06",
+      images: ["/projects/crack mag 2.png", "/projects/crack mag.jpg"],
       gridMeta: "CODE_REF // PRJ-06",
       title: "CRACK MAGAZINE EDITORIAL PORTAL",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -83,6 +91,7 @@ export default function ProjectsSection() {
     },
     {
       id: "07",
+      images: ["/projects/trust issues.jpeg", "/projects/trust issues 2.jpeg"],
       gridMeta: "CODE_REF // PRJ-07",
       title: "TRUST ISSUES GAME ENGINE",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -95,6 +104,7 @@ export default function ProjectsSection() {
     // === AUTOMATION & CRM ===
     {
       id: "13",
+      images: ["/projects/gullify.jpg"],
       gridMeta: "AUTO_REF // PRJ-13",
       title: "GULIFY REAL ESTATE PIPELINE INFRASTRUCTURE",
       category: "AUTOMATION & CRM",
@@ -105,6 +115,7 @@ export default function ProjectsSection() {
     },
     {
       id: "14",
+      images: ["/projects/n8n call centre agent.png"],
       gridMeta: "AUTO_REF // PRJ-14",
       title: "AI AGENT CALL CENTRE REPLACEMENT",
       category: "AUTOMATION & CRM",
@@ -115,6 +126,7 @@ export default function ProjectsSection() {
     },
     {
       id: "15",
+      images: ["/projects/automation.jpg", "/projects/ghl automation 2.jpg"],
       gridMeta: "AUTO_REF // PRJ-15",
       title: "MULTI-AGENCY CRM SUITE INFRASTRUCTURE",
       category: "AUTOMATION & CRM",
@@ -125,6 +137,7 @@ export default function ProjectsSection() {
     },
     {
       id: "16",
+      images: ["/projects/funnel snapsot.jpg", "/projects/website snapshot.jpg", "/projects/Screenshot 2026-06-25 223939.png", "/projects/Screenshot 2026-06-26 000231.png", "/projects/Screenshot 2026-06-26 003441.png", "/projects/Screenshot 2026-06-26 011436.png"],
       gridMeta: "AUTO_REF // PRJ-16",
       title: "SCALE AUTOMATED FUNNEL & MARKETING CORE",
       category: "AUTOMATION & CRM",
@@ -137,6 +150,7 @@ export default function ProjectsSection() {
     // === GRAPHIC DESIGN & MULTIMEDIA ===
     {
       id: "08",
+      images: ["/projects/genze.jpg", "/projects/genze 1.jpg", "/projects/genze 2.jpg"],
       gridMeta: "DESIGN_REF // PRJ-08",
       title: "GENZE APPARELS BRAND ARCHITECTURE",
       category: "GRAPHIC DESIGN & MULTIMEDIA",
@@ -147,6 +161,7 @@ export default function ProjectsSection() {
     },
     {
       id: "09",
+      images: ["/projects/legend fitness.jpg", "/projects/legend fitness 2.jpg"],
       gridMeta: "DESIGN_REF // PRJ-09",
       title: "LEGEND FITNESS HIGH-FIDELITY PROTOTYPING",
       category: "GRAPHIC DESIGN & MULTIMEDIA",
@@ -157,6 +172,7 @@ export default function ProjectsSection() {
     },
     {
       id: "10",
+      images: ["/projects/aeyron.jpg", "/projects/aeyron2.jpg", "/projects/aeyron 3.jpg"],
       gridMeta: "DESIGN_REF // PRJ-10",
       title: "AEYRON INDUSTRIAL MARKETING SUITE",
       category: "GRAPHIC DESIGN & MULTIMEDIA",
@@ -167,6 +183,7 @@ export default function ProjectsSection() {
     },
     {
       id: "11",
+      images: ["/projects/car dealership.jpg", "/projects/car dealership 2.jpg"],
       gridMeta: "DESIGN_REF // PRJ-11",
       title: "CAR DEALERSHIP ADVERTISING SYSTEMS",
       category: "GRAPHIC DESIGN & MULTIMEDIA",
@@ -177,6 +194,7 @@ export default function ProjectsSection() {
     },
     {
       id: "12",
+      images: ["/projects/logo 1.jpg", "/projects/logo 2.jpg", "/projects/Arrow-symbol-design-premium-vector-PNG.png"],
       gridMeta: "DESIGN_REF // PRJ-12",
       title: "VECTOR IDENTITY LOGO MATRICES",
       category: "GRAPHIC DESIGN & MULTIMEDIA",
@@ -287,9 +305,11 @@ export default function ProjectsSection() {
 
                     {/* Thumbnail Image display */}
                     <div className="relative overflow-hidden border border-matrix/15 h-32 w-full bg-black flex items-center justify-center">
-                      <span className="text-xs font-mono text-matrix/40 uppercase tracking-widest">
-                        [ASSET_THUMBNAIL_SLOT]
-                      </span>
+                      {project.images && project.images.length > 0 ? (
+                        <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover object-top" style={{ clipPath: "inset(4% 0 4% 0)" }} />
+                      ) : (
+                        <span className="text-xs font-mono text-matrix/40 uppercase tracking-widest">[NO ASSET]</span>
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] opacity-20" />
                     </div>
@@ -371,10 +391,28 @@ export default function ProjectsSection() {
               </button>
 
               {/* Left Side Content Frame (Visual Gallery) */}
-              <div className="w-full md:w-1/2 h-48 md:h-full border-b md:border-b-0 md:border-r border-matrix/30 relative flex items-center justify-center bg-black/50 overflow-hidden flex-shrink-0">
-                <span className="text-xs font-mono text-matrix/50 tracking-widest uppercase">
-                  [SYSTEM_REAL_IMAGE_SLOT]
-                </span>
+              <div className="w-full md:w-1/2 h-64 md:h-full border-b md:border-b-0 md:border-r border-matrix/30 relative flex flex-col items-center justify-start bg-black/50 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-matrix/30 scrollbar-track-transparent flex-shrink-0">
+                {selectedProject.images && selectedProject.images.length > 0 ? (
+                  <div className="w-full flex flex-col p-4 space-y-4 relative z-10">
+                    {selectedProject.images.map((img, idx) => (
+                      <div key={idx} className="w-full group/img relative">
+                        <img
+                           src={img}
+                           alt={`${selectedProject.title} asset ${idx}`}
+                           className="w-full object-cover border border-matrix/20 cursor-zoom-in group-hover/img:border-matrix-neon transition-colors"
+                           style={{ clipPath: "inset(2% 0 2% 0)" }}
+                           onClick={() => setLightboxImage(img)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center relative z-10">
+                    <span className="text-xs font-mono text-matrix/50 tracking-widest uppercase">
+                      [NO ASSETS FOUND]
+                    </span>
+                  </div>
+                )}
 
                 {/* Visual scanline overlay */}
                 <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] opacity-20" />
@@ -456,6 +494,38 @@ export default function ProjectsSection() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-sm"
+            onClick={() => setLightboxImage(null)}
+          >
+            <button
+              className="absolute top-4 right-4 z-[110] p-2 bg-black border border-matrix hover:border-matrix-neon text-matrix hover:text-matrix-neon transition-colors group cursor-pointer"
+              onClick={() => setLightboxImage(null)}
+            >
+              <X className="w-6 h-6 group-hover:scale-110 transition-transform" />
+            </button>
+            <motion.img
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              src={lightboxImage}
+              alt="Expanded view"
+              className="max-w-full max-h-full object-contain border border-matrix/30 shadow-[0_0_30px_rgba(0,255,0,0.15)]" style={{ clipPath: "inset(2% 0 2% 0)" }}
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+            />
+            {/* Visual scanline overlay for lightbox */}
+            <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] opacity-10" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }
