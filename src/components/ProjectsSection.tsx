@@ -58,7 +58,7 @@ export default function ProjectsSection() {
     },
     {
       id: "04",
-      images: [],
+      images: ['/projects/avere.png', '/projects/avere 2.png', '/projects/avere 3.png', '/projects/avere 4.png'],
       gridMeta: "CODE_REF // PRJ-04",
       title: "AVÉRE LUXURY SCENT EXPERIENCE",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -137,7 +137,7 @@ export default function ProjectsSection() {
     },
     {
       id: "16",
-      images: ["/projects/funnel snapsot.jpg", "/projects/website snapshot.jpg", "/projects/Screenshot 2026-06-25 223939.png", "/projects/Screenshot 2026-06-26 000231.png", "/projects/Screenshot 2026-06-26 003441.png", "/projects/Screenshot 2026-06-26 011436.png"],
+      images: ['/projects/funnel snapsot.jpg', '/projects/website snapshot.jpg'],
       gridMeta: "AUTO_REF // PRJ-16",
       title: "SCALE AUTOMATED FUNNEL & MARKETING CORE",
       category: "AUTOMATION & CRM",
@@ -194,7 +194,7 @@ export default function ProjectsSection() {
     },
     {
       id: "12",
-      images: ["/projects/logo 1.jpg", "/projects/logo 2.jpg", "/projects/Arrow-symbol-design-premium-vector-PNG.png"],
+      images: ['/projects/logo 1.jpg', '/projects/logo 2.jpg'],
       gridMeta: "DESIGN_REF // PRJ-12",
       title: "VECTOR IDENTITY LOGO MATRICES",
       category: "GRAPHIC DESIGN & MULTIMEDIA",
