@@ -13,33 +13,40 @@ export default function ContactSection() {
   const [logs, setLogs] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setLoading(true);
-    setLogs([]);
+    setLogs(["> INITIALIZING SECURE UPLINK..."]);
 
-    // Simulate cybernetic terminal message transmission logs
-    const simulationSteps = [
-      "INITIALIZING SECURE SOCKET LINK...",
-      "ESTABLISHING SYNERGY COMM BUFFER...",
-      "ENCRYPTING TRANSMISSION PACKETS [AES-256]...",
-      "ROUTING PACKETS VIA NODE_SWIFTERS_CORE...",
-      "TESTING AUTHENTICITY SECURE HANDSHAKE... [OK]",
-      "MESSAGE SUCCESSFULLY ENQUEUED TO SWIFTERS DATABASE PROTOCOL!",
-    ];
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/theswiftersduo@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          VISITOR_NAME_STRING: formData.name,
+          COMM_EMAIL_NODE: formData.email,
+          ENCRYPTED_CIPHER_TXT: formData.message,
+          _subject: "New Swifters Contact Reach"
+        }),
+      });
 
-    simulationSteps.forEach((step, idx) => {
-      setTimeout(() => {
-        setLogs((prev) => [...prev, step]);
-        if (idx === simulationSteps.length - 1) {
-          setLoading(false);
-          setSubmitted(true);
-          setFormData({ name: "", email: "", message: "" });
-        }
-      }, (idx + 1) * 700);
-    });
+      if (response.ok) {
+        setLogs(prev => [...prev, "> DATA PACKETS ROUTED SUCCESSFULLY. ACCESS GRANTED."]);
+        setSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setLogs(prev => [...prev, "> TRANSMISSION FAILED. ERR_CODE: " + response.status]);
+      }
+    } catch (error) {
+      setLogs(prev => [...prev, "> CONNECTION TIMEOUT OR NETWORK ERROR DETECTED."]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -86,9 +93,8 @@ export default function ContactSection() {
                 <span>SECURE_COMMUNICATION_LINK_GATEWAY</span>
               </div>
 
-              {!submitted && !loading ? (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
                     {/* Visitor Name Field */}
                     <div className="space-y-2">
@@ -101,7 +107,8 @@ export default function ContactSection() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. CORE_USER"
-                        className="w-full bg-black border border-matrix/20 hover:border-matrix/50 focus:border-matrix-neon outline-none px-4 py-3 text-xs font-mono text-white placeholder-matrix/20 rounded-none focus:box-glow-matrix transition-all"
+                        disabled={loading || submitted}
+                        className="w-full bg-black border border-matrix/20 hover:border-matrix/50 focus:border-matrix-neon outline-none px-4 py-3 text-xs font-mono text-white placeholder-matrix/20 rounded-none focus:box-glow-matrix transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
 
@@ -116,7 +123,8 @@ export default function ContactSection() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. USER@SYS.NET"
-                        className="w-full bg-black border border-matrix/20 hover:border-matrix/50 focus:border-matrix-neon outline-none px-4 py-3 text-xs font-mono text-white placeholder-matrix/20 rounded-none focus:box-glow-matrix transition-all"
+                        disabled={loading || submitted}
+                        className="w-full bg-black border border-matrix/20 hover:border-matrix/50 focus:border-matrix-neon outline-none px-4 py-3 text-xs font-mono text-white placeholder-matrix/20 rounded-none focus:box-glow-matrix transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
 
@@ -133,7 +141,8 @@ export default function ContactSection() {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={5}
                       placeholder="ENTER PROTOCOLS OR PROMPT DESCRIPTION HERE..."
-                      className="w-full bg-black border border-matrix/20 hover:border-matrix/50 focus:border-matrix-neon outline-none px-4 py-4 text-xs font-mono text-white placeholder-matrix/20 rounded-none focus:box-glow-matrix transition-all resize-none"
+                      disabled={loading || submitted}
+                      className="w-full bg-black border border-matrix/20 hover:border-matrix/50 focus:border-matrix-neon outline-none px-4 py-4 text-xs font-mono text-white placeholder-matrix/20 rounded-none focus:box-glow-matrix transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -141,60 +150,44 @@ export default function ContactSection() {
                   <div className="pt-4">
                     <button
                       type="submit"
-                      className="group relative w-full sm:w-auto px-8 py-3.5 bg-matrix border border-matrix hover:border-matrix-neon text-black hover:text-matrix-neon font-bold font-sans tracking-widest text-xs uppercase overflow-hidden transition-all duration-300 rounded-none"
+                      disabled={loading || submitted}
+                      className="group relative w-full sm:w-auto px-8 py-3.5 bg-matrix border border-matrix hover:border-matrix-neon text-black hover:text-matrix-neon font-bold font-sans tracking-widest text-xs uppercase overflow-hidden transition-all duration-300 rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="absolute inset-x-0 bottom-0 top-0 bg-black scale-y-0 group-hover:scale-y-100 transition-transform duration-300 z-0 origin-bottom" />
                       <span className="relative z-10 flex items-center justify-center gap-2 font-mono">
-                        <Send className="w-4 h-4" />
-                        TRANSMIT SECURE DATA REACH
+                        {loading ? (
+                          <>
+                            <Terminal className="w-4 h-4 animate-pulse" />
+                            &gt; TRANSMITTING...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4" />
+                            TRANSMIT SECURE DATA REACH
+                          </>
+                        )}
                       </span>
                     </button>
                   </div>
-                </form>
-              ) : loading ? (
-                /* Interactive transmission terminal logging dashboard */
-                <div className="space-y-4 font-mono bg-black/60 p-6 border border-matrix/20 rounded-none min-h-[300px] flex flex-col justify-between">
-                  <div className="space-y-2 text-xs">
-                    <div className="text-matrix/40 uppercase font-bold text-[9px] mb-2">STREAMING_PACKET_TRACE:</div>
-                    {logs.map((log, index) => (
-                      <div key={index} className="flex items-center gap-2 text-matrix-neon">
-                        <span className="text-matrix/40">&gt;&gt;</span>
-                        <span>{log}</span>
-                      </div>
-                    ))}
-                    <div className="flex items-center gap-2 text-white">
-                      <span className="w-2 h-2.5 bg-matrix animate-pulse" />
-                      <span>PENDING ROUTER ACTION...</span>
+
+                  {/* Terminal Output */}
+                  {(loading || submitted || logs.length > 0) && (
+                    <div className="mt-6 space-y-2 font-mono bg-black/60 p-4 border border-matrix/20 rounded-none">
+                      {logs.map((log, index) => (
+                        <div key={index} className="flex items-center gap-2 text-matrix-neon text-xs">
+                          <span>{log}</span>
+                        </div>
+                      ))}
+                      {loading && (
+                        <div className="flex items-center gap-2 text-white text-xs mt-2">
+                          <span className="w-2 h-2.5 bg-matrix animate-pulse" />
+                        </div>
+                      )}
                     </div>
-                  </div>
-                  <div>
-                    <div className="h-1 bg-matrix animate-pulse" />
-                  </div>
-                </div>
-              ) : (
-                /* Success screen */
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="space-y-6 text-center py-12 font-mono"
-                >
-                  <div className="w-16 h-16 border border-matrix bg-matrix-dark/10 flex items-center justify-center mx-auto box-glow-matrix animate-bounce">
-                    <CheckCircle2 className="w-8 h-8 text-matrix-neon" />
-                  </div>
-                  <h3 className="text-sm font-black text-white tracking-widest uppercase">
-                    SYS_LINK: SUCCESSFUL ENQUEUE
-                  </h3>
-                  <p className="text-xs text-matrix/60 max-w-md mx-auto leading-relaxed">
-                    Packet sequences have been successfully routed and transmitted safely to the Swifters main cognitive loop. Our technical core will review and respond via mail node shortly.
-                  </p>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="px-6 py-2 border border-matrix/30 hover:border-matrix text-matrix text-xs hover:bg-matrix/10 rounded-none transition-all duration-300 pointer-events-auto"
-                  >
-                    SEND ANOTHER PACKET Link
-                  </button>
-                </motion.div>
-              )}
+                  )}
+                </form>
+
+
             </div>
           </div>
 
