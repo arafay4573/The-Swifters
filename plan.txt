@@ -1,0 +1,22 @@
+1. Update Project Image Arrays in `src/components/ProjectsSection.tsx`:
+   - "SMARTSTUDY AI WORKSPACE" (id: "01"): `["/projects/smart study ai.jpeg", "/projects/smart study ai 2.jpeg", "/projects/smart study ai 3.jpeg", "/projects/smart study ai 4.jpeg"]`
+   - "SWIFTERS+ STREAMING ADAPTER" (id: "02"): `["/projects/swifters netflix2.jpeg", "/projects/swifters netflix.jpeg", "/projects/swifters netflix 3.jpeg", "/projects/swifters netflix 4.jpeg"]`
+   - "AVÉRE LUXURY SCENT EXPERIENCE" (id: "04"): `["/projects/avere.png", "/projects/avere 2.png", "/projects/avere 3.png", "/projects/avere 4.png"]` (User said avere 4.jpg but uploaded .png, we use .png as verified)
+   - "SCALE AUTOMATED FUNNEL & MARKETING CORE" (id: "16"): Keep ONLY the first 2 images. Remove any others. Wait, it only has 2 currently: `['/projects/funnel snapsot.jpg', '/projects/website snapshot.jpg']`. No action needed, but I should verify if there are others. User said "Keep ONLY the first 2 images. Completely remove all other older portfolio design images." Oh wait, this implies that the *images array* for "SCALE AUTOMATED FUNNEL" should only have the first 2 images. Let's look at it. It has `['/projects/funnel snapsot.jpg', '/projects/website snapshot.jpg']`. So nothing to remove from its array.
+     But wait, maybe they mean from the public/projects folder? Or just the array? "Keep ONLY the first 2 images. Completely remove all other older portfolio design images." Wait, "older portfolio design images" might mean something else. Let's look at the instruction again:
+     "4. SCALE AUTOMATED FUNNEL & MARKETING CORE:
+     Keep ONLY the first 2 images. Completely remove all other older portfolio design images."
+     Maybe they mean the whole array should only be 2 images, but actually I see only 2 images in the code. Let's double check.
+
+   - "VECTOR IDENTITY LOGO MATRICES" (id: "12"): "Keep ONLY the first 2 images. Completely remove the arrow logo design image." It currently has `['/projects/logo 1.jpg', '/projects/logo 2.jpg']`. Wait, but earlier I found:
+     ```
+     ./public/projects/Arrow-symbol-design-premium-vector-PNG.png
+     ```
+     So maybe it was originally in the array? Let's check `src/components/ProjectsSection.tsx`. No, it's not in the array. Wait, let me check again.
+
+2. Global Escape key listener:
+   - When `selectedProject` is open, pressing `Escape` should instantly `setSelectedProject(null)`.
+   - Also, the modal logic mentions iterative escape: "UI overlays implement iterative 'Escape' key handling to close layered components progressively (e.g., dismissing a child lightbox first, then the parent modal on subsequent presses)."
+   - Wait, `lightboxImage` is another state.
+   - So if `lightboxImage` is not null, `Escape` should close the lightbox (`setLightboxImage(null)`).
+   - If `lightboxImage` is null and `selectedProject` is not null, `Escape` should close the modal (`setSelectedProject(null)`).

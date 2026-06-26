@@ -25,7 +25,7 @@ export default function ProjectsSection() {
     // === MOBILE & WEB DEVELOPMENT ===
     {
       id: "01",
-      images: ["/projects/smart study ai.jpeg", "/projects/smart study ai 2.jpeg", "/projects/smart study ai 3.jpeg", "/projects/smart study ai 4.jpeg"],
+      images: ["smart study ai.jpeg", "smart study ai 2.jpeg", "smart study ai 3.jpeg", "smart study ai 4.jpeg"],
       gridMeta: "CODE_REF // PRJ-01",
       title: "SMARTSTUDY AI WORKSPACE",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -36,7 +36,7 @@ export default function ProjectsSection() {
     },
     {
       id: "02",
-      images: ["/projects/swifters netflix.jpeg", "/projects/swifters netflix2.jpeg", "/projects/swifters netflix 3.jpeg", "/projects/swifters netflix 4.jpeg"],
+      images: ["swifters netflix2.jpeg", "swifters netflix.jpeg", "swifters netflix 3.jpeg", "swifters netflix 4.jpeg"],
       gridMeta: "CODE_REF // PRJ-02",
       title: "SWIFTERS+ STREAMING ADAPTER",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -58,7 +58,7 @@ export default function ProjectsSection() {
     },
     {
       id: "04",
-      images: ['/projects/avere.png', '/projects/avere 2.png', '/projects/avere 3.png', '/projects/avere 4.png'],
+      images: ["avere.png", "avere 2.png", "avere 3.png", "avere 4.jpg"],
       gridMeta: "CODE_REF // PRJ-04",
       title: "AVÉRE LUXURY SCENT EXPERIENCE",
       category: "MOBILE & WEB DEVELOPMENT",
@@ -207,6 +207,22 @@ export default function ProjectsSection() {
 
   const filteredProjects = filter === "ALL" ? projects : projects.filter(p => p.category === filter);
 
+  // Iterative Escape key handling for closing modals
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (lightboxImage) {
+          setLightboxImage(null);
+        } else if (selectedProject) {
+          setSelectedProject(null);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxImage, selectedProject]);
+
   // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedProject) {
@@ -306,7 +322,7 @@ export default function ProjectsSection() {
                     {/* Thumbnail Image display */}
                     <div className="relative overflow-hidden border border-matrix/15 h-32 w-full bg-black flex items-center justify-center">
                       {project.images && project.images.length > 0 ? (
-                        <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover object-top" style={{ clipPath: "inset(4% 0 4% 0)" }} />
+                        <img src={project.images[0].startsWith('/') ? project.images[0] : `/projects/${project.images[0]}`} alt={project.title} className="w-full h-full object-cover object-top" style={{ clipPath: "inset(4% 0 4% 0)" }} />
                       ) : (
                         <span className="text-xs font-mono text-matrix/40 uppercase tracking-widest">[NO ASSET]</span>
                       )}
@@ -397,7 +413,7 @@ export default function ProjectsSection() {
                     {selectedProject.images.map((img, idx) => (
                       <div key={idx} className="w-full group/img relative">
                         <img
-                           src={img}
+                           src={img.startsWith('/') ? img : `/projects/${img}`}
                            alt={`${selectedProject.title} asset ${idx}`}
                            className="w-full object-cover border border-matrix/20 cursor-zoom-in group-hover/img:border-matrix-neon transition-colors"
                            style={{ clipPath: "inset(2% 0 2% 0)" }}
@@ -515,7 +531,7 @@ export default function ProjectsSection() {
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
-              src={lightboxImage}
+              src={lightboxImage.startsWith('/') ? lightboxImage : `/projects/${lightboxImage}`}
               alt="Expanded view"
               className="max-w-full max-h-full object-contain border border-matrix/30 shadow-[0_0_30px_rgba(0,255,0,0.15)]" style={{ clipPath: "inset(2% 0 2% 0)" }}
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
