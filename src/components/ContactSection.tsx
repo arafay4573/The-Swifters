@@ -244,8 +244,8 @@ export default function ContactSection() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Linkedin className="w-4 h-4 text-matrix-neon" />
-                  <a href="https://www.linkedin.com/in/theswifters" target="_blank" rel="noopener noreferrer" className="hover:text-matrix-neon underline decoration-matrix-neon/30">
-                    /in/theswifters
+                  <a href="https://www.linkedin.com/company/theswifters" target="_blank" rel="noopener noreferrer" className="hover:text-matrix-neon underline decoration-matrix-neon/30">
+                    /company/theswifters
                   </a>
                 </div>
               </div>
