@@ -84,7 +84,7 @@ export default function Navbar({ onNavClick, activeSection }: NavbarProps) {
               onMouseEnter={triggerLogoGlitch}
               className="group flex items-center gap-3 bg-transparent text-left border-none focus:outline-none"
             >
-              <div className="relative w-10 h-10 border border-matrix/40 bg-black flex items-center justify-center group-hover:border-matrix-neon group-hover:box-glow-matrix transition-all duration-300">
+              <div className="relative w-10 h-10 border border-matrix/40 bg-black flex items-center justify-center p-2 group-hover:border-matrix-neon group-hover:box-glow-matrix transition-all duration-300">
                 <img
                   src={swiftersLogo}
                   alt="Swifters Logo"
