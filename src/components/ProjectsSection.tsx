@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FolderGit2, ArrowUpRight, Github, ExternalLink, Filter, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import genzeTshirtImg from "../assets/images/genze_tshirt_mockup_1782231119374.jpg";
@@ -20,6 +20,7 @@ export default function ProjectsSection() {
   const [hoveredPid, setHoveredPid] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const touchStartY = useRef<number>(0);
 
   const projects: ProjectItem[] = [
     // === MOBILE & WEB DEVELOPMENT ===
@@ -300,8 +301,13 @@ export default function ProjectsSection() {
                   onMouseLeave={() => setHoveredPid(null)}
                   onClick={() => setSelectedProject(project)}
                   onTouchStart={(e) => {
-                    // Slight delay or direct click to ensure mobile triggering works
-                    setSelectedProject(project);
+                    touchStartY.current = e.touches[0].clientY;
+                  }}
+                  onTouchEnd={(e) => {
+                    const touchEndY = e.changedTouches[0].clientY;
+                    if (Math.abs(touchEndY - touchStartY.current) < 8) {
+                      setSelectedProject(project);
+                    }
                   }}
                   className="group relative bg-matrix-dark/10 border border-matrix/15 p-6 flex flex-col justify-between overflow-hidden hover:border-matrix-neon/55 hover:box-glow-matrix transition-all duration-300 rounded-none h-[480px] cursor-pointer"
                 >
